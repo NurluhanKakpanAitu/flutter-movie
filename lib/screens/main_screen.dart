@@ -196,6 +196,7 @@ class _MainPageState extends State<MainPage> {
                       Container(
                         width: width * 0.5,
                         height: height * 0.3,
+                        margin: const EdgeInsets.only(right: 20),
                         child: Image.asset('lib/images/hardy.png'),
                       ),
                       Container(
