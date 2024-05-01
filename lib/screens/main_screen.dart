@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 import 'package:flutter_movie/components/video_player.dart';
 
@@ -17,7 +16,7 @@ class _MainPageState extends State<MainPage> {
     final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      drawer: NavBar(),
+      drawer: const NavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -53,12 +52,12 @@ class _MainPageState extends State<MainPage> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: width,
               height: height * 0.3,
-              child: VideoApp(),
+              child: const VideoApp(),
             ),
-            Container(
+            SizedBox(
               width: width,
               height: height * 0.1,
               child: const Center(
@@ -146,80 +145,74 @@ class _MainPageState extends State<MainPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Container(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: width * 0.5,
-                          height: height * 0.3,
-                          child: Image.asset('lib/images/dicaprio.png'),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          width: width * 0.5,
-                          height: height * 0.1,
-                          child: const Text(
-                            'Leonardo DiCaprio',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 24, 24, 24),
-                              fontSize: 20,
-                              fontFamily: 'Roboto',
-                            ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: width * 0.5,
+                        height: height * 0.3,
+                        child: Image.asset('lib/images/dicaprio.png'),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        width: width * 0.5,
+                        height: height * 0.1,
+                        child: const Text(
+                          'Leonardo DiCaprio',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 24, 24, 24),
+                            fontSize: 20,
+                            fontFamily: 'Roboto',
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(width: 20),
-                  Container(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: width * 0.5,
-                          height: height * 0.3,
-                          child: Image.asset('lib/images/nolan.png'),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          width: width * 0.5,
-                          height: height * 0.1,
-                          child: const Text(
-                            'Christopher Nolan',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 24, 24, 24),
-                              fontSize: 20,
-                              fontFamily: 'Roboto',
-                            ),
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: width * 0.5,
+                        height: height * 0.3,
+                        child: Image.asset('lib/images/nolan.png'),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        width: width * 0.5,
+                        height: height * 0.1,
+                        child: const Text(
+                          'Christopher Nolan',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 24, 24, 24),
+                            fontSize: 20,
+                            fontFamily: 'Roboto',
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(width: 20),
-                  Container(
-                    child: Column(
-                      children: [
-                        Container(
-                          width: width * 0.5,
-                          height: height * 0.3,
-                          margin: const EdgeInsets.only(right: 20),
-                          child: Image.asset('lib/images/hardy.png'),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          width: width * 0.5,
-                          height: height * 0.1,
-                          child: const Text(
-                            'Tom Hardy',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 24, 24, 24),
-                              fontSize: 20,
-                              fontFamily: 'Roboto',
-                            ),
+                  Column(
+                    children: [
+                      Container(
+                        width: width * 0.5,
+                        height: height * 0.3,
+                        margin: const EdgeInsets.only(right: 20),
+                        child: Image.asset('lib/images/hardy.png'),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        width: width * 0.5,
+                        height: height * 0.1,
+                        child: const Text(
+                          'Tom Hardy',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 24, 24, 24),
+                            fontSize: 20,
+                            fontFamily: 'Roboto',
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),

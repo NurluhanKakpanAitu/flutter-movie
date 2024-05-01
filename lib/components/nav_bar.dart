@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/main.dart';
+import 'package:flutter_movie/screens/directors_and_producers.dart';
 
 class NavBar extends StatelessWidget {
+  const NavBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -38,14 +42,14 @@ class NavBar extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text('Home'),
             onTap: () {
-              Navigator.pushNamed(context, '/');
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const MyApp()));
             },
           ),
           ListTile(
             leading: const Icon(Icons.movie),
-            title: const Text('Movies'),
+            title: const Text('Directors and Producers'),
             onTap: () {
-              Navigator.pushNamed(context, '/movies');
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const DirectorsProducersScreen()));
             },
           ),
           ListTile(
