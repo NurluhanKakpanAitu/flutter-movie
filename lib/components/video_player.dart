@@ -6,6 +6,7 @@ class VideoApp extends StatefulWidget {
   const VideoApp({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _VideoAppState createState() => _VideoAppState();
 }
 

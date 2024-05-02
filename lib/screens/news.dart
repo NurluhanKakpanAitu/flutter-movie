@@ -37,7 +37,10 @@ class FullNewsPage extends StatelessWidget {
   final String imageUrl;
 
   const FullNewsPage(
-      {required this.title, required this.content, required this.imageUrl});
+      {super.key,
+      required this.title,
+      required this.content,
+      required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -60,20 +63,21 @@ class FullNewsPage extends StatelessWidget {
 }
 
 class News extends StatelessWidget {
-  const News({Key? key}) : super(key: key);
+  const News({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: HomePage(),
     );
   }
 }
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 
@@ -82,7 +86,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const NavBar(),
-      appBar: OwnAppBar(),
+      appBar: const OwnAppBar(),
       body: ListView.builder(
         itemCount: newsList.length,
         itemBuilder: (context, index) {
@@ -98,6 +102,8 @@ class _HomePageState extends State<HomePage> {
 }
 
 class OwnAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const OwnAppBar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -106,7 +112,7 @@ class OwnAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
 
 List<Map<String, String>> newsList = [
