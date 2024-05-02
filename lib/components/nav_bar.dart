@@ -19,9 +19,10 @@ class NavBar extends StatelessWidget {
                 children: [
                   Container(
                     margin: const EdgeInsets.only(top: 20),
-                    child: Image.asset('lib/images/logo.png',
-                    width: 100,
-                    height: 100,
+                    child: Image.asset(
+                      'lib/images/logo.png',
+                      width: 100,
+                      height: 100,
                     ),
                   ),
                   Container(
@@ -42,14 +43,18 @@ class NavBar extends StatelessWidget {
             leading: const Icon(Icons.home),
             title: const Text('Home'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const MyApp()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MyApp()));
             },
           ),
           ListTile(
             leading: const Icon(Icons.movie),
             title: const Text('Directors and Producers'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const DirectorsProducersScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const DirectorsProducersScreen()));
             },
           ),
           ListTile(
