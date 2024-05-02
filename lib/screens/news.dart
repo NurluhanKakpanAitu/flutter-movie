@@ -131,4 +131,24 @@ List<Map<String, String>> newsList = [
     'imageUrl':
         'https://kinowar.com/wp-content/uploads/2020/04/%D0%9B%D0%B5%D0%B2%D0%B8%D1%82%D1%82-%D0%A1%D1%86%D0%B5%D0%BD%D0%B0-%D0%B2-%D0%BA%D0%BE%D0%BC%D0%BD%D0%B0%D1%82%D0%B5.jpg',
   },
+  {
+    'title': 'PASIV device',
+    'content':
+        'The PASIV device (Portable Automated Somnacin IntraVenuous Device) is a military-grade infusion pump originally developed as part of a sleep training system for soldiers. In accordance with the user manual, it is used exclusively for intravenous administration of the substance somnacin[29], a drug that makes it possible to immerse oneself in someone else sleep. The drug is administered through a hypodermic needle inserted into a peripheral vein in the forearm. The device operates autonomously, fits completely in a suitcase and can be used to put several users to sleep at the same time. The device itself in the film has no name, and the principle of its operation is not explained; information about the device comes from the viral site pasivdevice.org, created by the film company Warner Bros. as part of the films promotion[30]. Based on the plot of the film, it is clear that to enter the first level of sleep, a combination of the oral form of the drug developed by Yusuf and a continuous maintenance infusion of somnacin is used. For single-level training dreams, the use of one somnacin is sufficient.',
+    'imageUrl':
+        'https://avatars.dzeninfra.ru/get-zen_doc/101122/pub_5a5c9d66dcaf8e27286b9487_5a5c9e91830905c280ca4f3f/scale_1200',
+  },
+  {
+    'title': 'The architect',
+    'content':
+        'a specialist who creates an illusory world for someone else’s dreams. The architects goal during extraction is to design the dream so that the sleeper cannot distinguish it from reality, and to create for the sleeper the most complex dream labyrinth from which the victim cannot easily escape. The architect in the film is Nash in one of the opening scenes (an attempt to steal information from Saitos subconscious), and Ariadne in the rest of the film. The main character Cobb used to also be an architect, but due to the fact that Maul began to appear in his subconscious, he stopped designing dreams so as not to know the structure of the labyrinth and, thus, Maul would not know it.',
+    'imageUrl':
+        'https://th.bing.com/th/id/OIP.OZkVDVcqQEFAVNAHaxHl4gHaE8?rs=1&pid=ImgDetMain',
+  },
+  {
+    'title': 'Yes, there will be no “take two” here.',
+    'content':
+        'Yes, there will be no “take two” here. A head pokes out from above: “Leave the site!” In three hours, only ashes and flames will remain here. Over the past few days weve watched Christopher Nolan work in extreme conditions, in the cold and at high altitude. He is constantly on the move - either filming a Hummer spectacularly taking off into the air, or a chase on skis from the back of a motor sleigh, or a shootout from a helicopter. He simply doesn’t have a director’s chair; We saw him sitting only once, in a helicopter.',
+    'imageUrl': 'https://www.film.ru/sites/default/files/images/mountn.jpg',
+  },
 ];
