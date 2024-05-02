@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoApp extends StatefulWidget {
+  const VideoApp({super.key});
+
   @override
   _VideoAppState createState() => _VideoAppState();
 }
@@ -38,7 +40,7 @@ class _VideoAppState extends State<VideoApp> {
                 aspectRatio: _controller.value.aspectRatio,
                 child: VideoPlayer(_controller),
               )
-            : CircularProgressIndicator(),
+            : const CircularProgressIndicator(),
       ),
     );
   }

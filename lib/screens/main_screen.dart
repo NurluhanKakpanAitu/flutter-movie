@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 import 'package:flutter_movie/components/video_player.dart';
 
@@ -17,48 +17,17 @@ class _MainPageState extends State<MainPage> {
     final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      drawer: NavBar(),
+      drawer: const NavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: width,
-              height: height * 0.15,
-              color: const Color.fromRGBO(58, 63, 71, 1.0),
-              child: Center(
-                child: Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: Builder(builder: (context) {
-                        return IconButton(
-                          icon: const Icon(Icons.menu,
-                          size: 30,
-                          ),
-                          color: Colors.white,
-                        
-                          onPressed: () {
-                            Scaffold.of(context).openDrawer();
-                          },
-                        );
-                      }),
-                    ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      margin: EdgeInsets.only(left: (width * 0.27) - 10),
-                      child: Image.asset('lib/images/logo.png'),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Container(
+            OwnAppBar(),
+            SizedBox(
               width: width,
               height: height * 0.3,
-              child: VideoApp(),
+              child: const VideoApp(),
             ),
-            Container(
+            SizedBox(
               width: width,
               height: height * 0.1,
               child: const Center(
@@ -131,8 +100,8 @@ class _MainPageState extends State<MainPage> {
             ),
             const SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              padding:  EdgeInsets.only(left: 20, right: 20),
-              child:  Text(
+              padding: EdgeInsets.only(left: 20, right: 20),
+              child: Text(
                 "Cobb is a talented thief, the best of the best in the dangerous art of extraction: he steals valuable secrets from the depths of the subconscious during sleep, when the human mind is most vulnerable. Cobb's rare abilities made him a valuable player in the treacherous world of industrial espionage, but they also turned him into an eternal fugitive and deprived him of everything he had ever loved.",
                 style: TextStyle(
                   color: Color.fromARGB(255, 24, 24, 24),
@@ -146,6 +115,7 @@ class _MainPageState extends State<MainPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                   Container(
                     child: Column(
@@ -155,15 +125,22 @@ class _MainPageState extends State<MainPage> {
                           height: height * 0.3,
                           child: Image.asset('lib/images/dicaprio.png'),
 =======
+=======
+>>>>>>> afc0fc2f0fd713448728c91c21479080d6fd4478
                   Column(
                     children: [
                       SizedBox(
                         width: width * 0.5,
+<<<<<<< HEAD
                         height: height * 0.2,
                         child: const CircleAvatar(
                           radius: 100,
                           backgroundImage: AssetImage('lib/images/dicaprio.png'),
                         ),
+=======
+                        height: height * 0.3,
+                        child: Image.asset('lib/images/dicaprio.png'),
+>>>>>>> afc0fc2f0fd713448728c91c21479080d6fd4478
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -174,6 +151,7 @@ class _MainPageState extends State<MainPage> {
                           style: TextStyle(
                             color: Color.fromARGB(255, 24, 24, 24),
                             fontSize: 20,
+<<<<<<< HEAD
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.bold,
                           ),
@@ -190,12 +168,16 @@ class _MainPageState extends State<MainPage> {
                               fontSize: 20,
                               fontFamily: 'Roboto',
                             ),
+=======
+                            fontFamily: 'Roboto',
+>>>>>>> afc0fc2f0fd713448728c91c21479080d6fd4478
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(width: 20),
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                   Container(
                     child: Column(
@@ -205,15 +187,22 @@ class _MainPageState extends State<MainPage> {
                           height: height * 0.3,
                           child: Image.asset('lib/images/nolan.png'),
 =======
+=======
+>>>>>>> afc0fc2f0fd713448728c91c21479080d6fd4478
                   Column(
                     children: [
                       SizedBox(
                         width: width * 0.5,
+<<<<<<< HEAD
                         height: height * 0.2,
                         child: const CircleAvatar(
                           radius: 100,
                           backgroundImage: AssetImage('lib/images/nolan.png'),
                         ),
+=======
+                        height: height * 0.3,
+                        child: Image.asset('lib/images/nolan.png'),
+>>>>>>> afc0fc2f0fd713448728c91c21479080d6fd4478
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -225,6 +214,7 @@ class _MainPageState extends State<MainPage> {
                             color: Color.fromARGB(255, 24, 24, 24),
                             fontSize: 20,
                             fontFamily: 'Roboto',
+<<<<<<< HEAD
                           ),
 >>>>>>> Stashed changes
                         ),
@@ -239,12 +229,15 @@ class _MainPageState extends State<MainPage> {
                               fontSize: 20,
                               fontFamily: 'Roboto',
                             ),
+=======
+>>>>>>> afc0fc2f0fd713448728c91c21479080d6fd4478
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                   const SizedBox(width: 20),
+<<<<<<< HEAD
 <<<<<<< Updated upstream
                   Container(
                     child: Column(
@@ -255,16 +248,24 @@ class _MainPageState extends State<MainPage> {
                           margin: const EdgeInsets.only(right: 20),
                           child: Image.asset('lib/images/hardy.png'),
 =======
+=======
+>>>>>>> afc0fc2f0fd713448728c91c21479080d6fd4478
                   Column(
                     children: [
                       Container(
                         width: width * 0.5,
+<<<<<<< HEAD
                         height: height * 0.2,
                         margin: const EdgeInsets.only(right: 20),
                         child: const CircleAvatar(
                           radius: 100,
                           backgroundImage: AssetImage('lib/images/hardy.png'),
                         ),
+=======
+                        height: height * 0.3,
+                        margin: const EdgeInsets.only(right: 20),
+                        child: Image.asset('lib/images/hardy.png'),
+>>>>>>> afc0fc2f0fd713448728c91c21479080d6fd4478
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -276,6 +277,7 @@ class _MainPageState extends State<MainPage> {
                             color: Color.fromARGB(255, 24, 24, 24),
                             fontSize: 20,
                             fontFamily: 'Roboto',
+<<<<<<< HEAD
                           ),
 >>>>>>> Stashed changes
                         ),
@@ -290,10 +292,12 @@ class _MainPageState extends State<MainPage> {
                               fontSize: 20,
                               fontFamily: 'Roboto',
                             ),
+=======
+>>>>>>> afc0fc2f0fd713448728c91c21479080d6fd4478
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   )
                 ],
               ),
