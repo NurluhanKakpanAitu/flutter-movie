@@ -146,6 +146,7 @@ class _MainPageState extends State<MainPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
+<<<<<<< Updated upstream
                   Container(
                     child: Column(
                       children: [
@@ -153,6 +154,30 @@ class _MainPageState extends State<MainPage> {
                           width: width * 0.5,
                           height: height * 0.3,
                           child: Image.asset('lib/images/dicaprio.png'),
+=======
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: width * 0.5,
+                        height: height * 0.2,
+                        child: const CircleAvatar(
+                          radius: 100,
+                          backgroundImage: AssetImage('lib/images/dicaprio.png'),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        width: width * 0.5,
+                        height: height * 0.1,
+                        child: const Text(
+                          'Leonardo DiCaprio',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 24, 24, 24),
+                            fontSize: 20,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.bold,
+                          ),
+>>>>>>> Stashed changes
                         ),
                         Container(
                           alignment: Alignment.center,
@@ -171,6 +196,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   const SizedBox(width: 20),
+<<<<<<< Updated upstream
                   Container(
                     child: Column(
                       children: [
@@ -178,6 +204,29 @@ class _MainPageState extends State<MainPage> {
                           width: width * 0.5,
                           height: height * 0.3,
                           child: Image.asset('lib/images/nolan.png'),
+=======
+                  Column(
+                    children: [
+                      SizedBox(
+                        width: width * 0.5,
+                        height: height * 0.2,
+                        child: const CircleAvatar(
+                          radius: 100,
+                          backgroundImage: AssetImage('lib/images/nolan.png'),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        width: width * 0.5,
+                        height: height * 0.1,
+                        child: const Text(
+                          'Christopher Nolan',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 24, 24, 24),
+                            fontSize: 20,
+                            fontFamily: 'Roboto',
+                          ),
+>>>>>>> Stashed changes
                         ),
                         Container(
                           alignment: Alignment.center,
@@ -196,6 +245,7 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ),
                   const SizedBox(width: 20),
+<<<<<<< Updated upstream
                   Container(
                     child: Column(
                       children: [
@@ -204,6 +254,30 @@ class _MainPageState extends State<MainPage> {
                           height: height * 0.3,
                           margin: const EdgeInsets.only(right: 20),
                           child: Image.asset('lib/images/hardy.png'),
+=======
+                  Column(
+                    children: [
+                      Container(
+                        width: width * 0.5,
+                        height: height * 0.2,
+                        margin: const EdgeInsets.only(right: 20),
+                        child: const CircleAvatar(
+                          radius: 100,
+                          backgroundImage: AssetImage('lib/images/hardy.png'),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        width: width * 0.5,
+                        height: height * 0.1,
+                        child: const Text(
+                          'Tom Hardy',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 24, 24, 24),
+                            fontSize: 20,
+                            fontFamily: 'Roboto',
+                          ),
+>>>>>>> Stashed changes
                         ),
                         Container(
                           alignment: Alignment.center,
