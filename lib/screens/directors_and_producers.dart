@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/components/nav_bar.dart';
 
 void main() {
   runApp(const DirectorsProducersScreen());
@@ -143,70 +144,6 @@ class OwnAppBar extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class NavBar extends StatelessWidget {
-  const NavBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            height: 200,
-            color: const Color.fromRGBO(58, 63, 71, 1.0),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('lib/images/logo.png', width: 100, height: 100),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Movie App',
-                    style: TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          ListTile(
-            leading: const Icon(Icons.home),
-            title: const Text('Home'),
-            onTap: () {
-              // Update navigation logic according to your app structure
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.movie),
-            title: const Text('Directors and Producers'),
-            onTap: () {
-              Navigator.pop(context);
-              // Additional navigation logic
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.tv),
-            title: const Text('TV Shows'),
-            onTap: () {
-              Navigator.pop(context);
-              // Additional navigation logic
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
-            onTap: () {
-              Navigator.pop(context);
-              // Additional navigation logic
-            },
-          ),
-        ],
       ),
     );
   }
