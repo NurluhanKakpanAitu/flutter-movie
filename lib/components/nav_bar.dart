@@ -58,6 +58,8 @@ class NavBar extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const DirectorsProducersScreen()));
+<<<<<<< HEAD
+=======
             },
           ),
           ListTile(
@@ -68,6 +70,7 @@ class NavBar extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const Personalities()));
+>>>>>>> main
             },
           ),
           ListTile(
