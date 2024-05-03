@@ -119,8 +119,11 @@ class _MainPageState extends State<MainPage> {
                     children: [
                       SizedBox(
                         width: width * 0.5,
-                        height: height * 0.3,
-                        child: Image.asset('lib/images/dicaprio.png'),
+                        height: height * 0.2,
+                        child: const CircleAvatar(
+                          radius: 100,
+                          backgroundImage: AssetImage('lib/images/dicaprio.png'),
+                        )
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -142,8 +145,11 @@ class _MainPageState extends State<MainPage> {
                     children: [
                       SizedBox(
                         width: width * 0.5,
-                        height: height * 0.3,
-                        child: Image.asset('lib/images/nolan.png'),
+                        height: height * 0.2,
+                        child: const CircleAvatar(
+                          radius: 100,
+                          backgroundImage: AssetImage('lib/images/nolan.png'),
+                        )
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -165,9 +171,12 @@ class _MainPageState extends State<MainPage> {
                     children: [
                       Container(
                         width: width * 0.5,
-                        height: height * 0.3,
+                        height: height * 0.2,
                         margin: const EdgeInsets.only(right: 20),
-                        child: Image.asset('lib/images/hardy.png'),
+                        child: const CircleAvatar(
+                          radius: 100,
+                          backgroundImage: AssetImage('lib/images/hardy.png'),
+                        ),
                       ),
                       Container(
                         alignment: Alignment.center,
