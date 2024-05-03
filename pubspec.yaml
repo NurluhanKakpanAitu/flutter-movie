@@ -65,7 +65,7 @@ flutter:
   assets:
     - lib/images/logo.png
     - lib/images/videos/trailer.mp4
-    - lib/images/dicaprio/dicaprio.png
+    - lib/images/dicaprio/dicaprio.png    
     
     - lib/images/hardy.png
     - lib/images/nolan.png
