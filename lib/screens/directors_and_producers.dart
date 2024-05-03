@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie/components/nav_bar.dart';
+import 'package:flutter_movie/components/nav_bar.dart'; // Ensure this path is correct for your project
 
 void main() {
   runApp(const DirectorsProducersScreen());
@@ -81,17 +81,11 @@ class _HomePageState extends State<HomePage> {
               subtitle: Text(crewMembers[index].role),
               isThreeLine: true,
               onTap: () {
-                showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Bio of ${crewMembers[index].name}'),
-                    content: Text(crewMembers[index].bio),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text('Close'),
-                      ),
-                    ],
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CrewMemberDetailScreen(crewMember: crewMembers[index]),
                   ),
                 );
               },
@@ -141,6 +135,39 @@ class OwnAppBar extends StatelessWidget {
                 child:
                     Image.asset('lib/images/logo.png', width: 100, height: 100),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CrewMemberDetailScreen extends StatelessWidget {
+  final CrewMember crewMember;
+
+  const CrewMemberDetailScreen({Key? key, required this.crewMember})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(crewMember.name),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              crewMember.role,
+              style: Theme.of(context).textTheme.subtitle1,
+            ),
+            SizedBox(height: 10),
+            Text(
+              crewMember.bio,
+              style: Theme.of(context).textTheme.bodyText2,
             ),
           ],
         ),
