@@ -146,8 +146,7 @@ class OwnAppBar extends StatelessWidget {
 class CrewMemberDetailScreen extends StatelessWidget {
   final CrewMember crewMember;
 
-  const CrewMemberDetailScreen({Key? key, required this.crewMember})
-      : super(key: key);
+  const CrewMemberDetailScreen({super.key, required this.crewMember});
 
   @override
   Widget build(BuildContext context) {
@@ -162,12 +161,12 @@ class CrewMemberDetailScreen extends StatelessWidget {
           children: <Widget>[
             Text(
               crewMember.role,
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               crewMember.bio,
-              style: Theme.of(context).textTheme.bodyText2,
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],
         ),

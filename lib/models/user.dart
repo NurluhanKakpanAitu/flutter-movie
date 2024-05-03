@@ -1,6 +1,8 @@
 abstract class User{
-  late String name;
-  late int age;
-  late String image;
-  late String dateOfBirth;
+  final String name;
+  final int age;
+  final String image;
+  final String dateOfBirth;
+
+  User({required this.name, required this.age, required this.image, required this.dateOfBirth});
 }

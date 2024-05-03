@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 
 class ImageCarousel extends StatelessWidget {
   final List<String> items;
-
-  const ImageCarousel({super.key, required this.items});
+  final double height;
+  const ImageCarousel({super.key, required this.items, this.height = 200});
   @override
   Widget build(BuildContext context) {
     return CarouselSlider(
       options: CarouselOptions(
-        height: 200.0,
+        height: height,
         enlargeCenterPage: true,
         autoPlay: true,
         aspectRatio: 16/9,
@@ -19,7 +19,7 @@ class ImageCarousel extends StatelessWidget {
         viewportFraction: 0.8,
       ),
       items: items.map((item) => Center(
-        child: Image.network(
+        child: Image.asset(
           item,
           fit: BoxFit.cover,
           width: 1000.0,

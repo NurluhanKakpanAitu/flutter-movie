@@ -40,16 +40,16 @@ final List<Actor> actors = [
     movies: ['Интерстеллар', 'Волк с Уолл-стрит', 'Остров проклятых'],
     awards: ['Оскар', 'Золотой глобус', 'Сатурн'],
     imagesFromMovie: [
-      'https://upload.wikimedia.org/wikipedia/commons/5/59/Leonardo_DiCaprio_2019_by_Glenn_Francis.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/5/59/Leonardo_DiCaprio_2019_by_Glenn_Francis.jpg',
-      'https://upload.wikimedia.org/wikipedia/commons/5/59/Leonardo_DiCaprio_2019_by_Glenn_Francis.jpg',
+      'lib/images/dicaprio/scene1.png',
+      'lib/images/dicaprio/scene2.png',
+      'lib/images/dicaprio/scene3.png',
     ],
   ),
   Actor(
       name: 'Джозеф Гордон-Левитт',
       age: 40,
       image:
-          'https://upload.wikimedia.org/wikipedia/commons/5/59/Leonardo_DiCaprio_2019_by_Glenn_Francis.jpg',
+          'lib/images/levitt/levitt.png',
       dateOfBirth: '17.02.1981',
       role: 'Артур',
       movies: [
@@ -62,8 +62,8 @@ final List<Actor> actors = [
         'Сатурн'
       ],
       imagesFromMovie: [
-        'https://upload.wikimedia.org/wikipedia/commons/5/59/Leonardo_DiCaprio_2019_by_Glenn_Francis.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/5/59/Leonardo_DiCaprio_2019_by_Glenn_Francis.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/5/59/Leonardo_DiCaprio_2019_by_G'
+        'lib/images/levitt/scene1.png',
+        'lib/images/levitt/scene2.png',
+        'lib/images/levitt/scene3.png'
       ])
 ];

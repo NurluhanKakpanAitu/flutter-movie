@@ -137,7 +137,7 @@ class _CinemaDetailsHomeState extends State<CinemaDetailsHome> {
   child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(
+      const Text(
         'Отзывы:',
         style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
       ),
@@ -157,25 +157,25 @@ class _CinemaDetailsHomeState extends State<CinemaDetailsHome> {
                     children: [
                       Text(
                         cinema.feedbacks[index].name,
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Row(
                         children: [
                           for (int i = 0; i < cinema.feedbacks[index].countOfStars; i++)
-                            Icon(Icons.star, color: Colors.orange, size: 16),
+                            const Icon(Icons.star, color: Colors.orange, size: 16),
                         ],
                       ),
                     ],
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Text(
                     cinema.feedbacks[index].text,
-                    style: TextStyle(fontSize: 14),
+                    style: const TextStyle(fontSize: 14),
                   ),
-                  SizedBox(height: 4),
+                  const SizedBox(height: 4),
                   Text(
                     cinema.feedbacks[index].date,
-                    style: TextStyle(fontSize: 12, color: Colors.grey),
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
                   ),
                 ],
               ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/components/actor_card.dart';
 import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/cinema_main_info.dart';
 import 'package:flutter_movie/components/cinema_overview.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 import 'package:flutter_movie/components/video_player.dart';
+import 'package:flutter_movie/datas/cinema_list.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -37,84 +39,8 @@ class _MainPageState extends State<MainPage> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: width * 0.5,
-                        height: height * 0.2,
-                        child: const CircleAvatar(
-                          radius: 100,
-                          backgroundImage: AssetImage('lib/images/dicaprio.png'),
-                        )
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        width: width * 0.5,
-                        height: height * 0.1,
-                        child: const Text(
-                          'Leonardo DiCaprio',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 24, 24, 24),
-                            fontSize: 20,
-                            fontFamily: 'Roboto',
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(width: 20),
-                  Column(
-                    children: [
-                      SizedBox(
-                        width: width * 0.5,
-                        height: height * 0.2,
-                        child: const CircleAvatar(
-                          radius: 100,
-                          backgroundImage: AssetImage('lib/images/nolan.png'),
-                        )
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        width: width * 0.5,
-                        height: height * 0.1,
-                        child: const Text(
-                          'Christopher Nolan',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 24, 24, 24),
-                            fontSize: 20,
-                            fontFamily: 'Roboto',
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                  const SizedBox(width: 20),
-                  Column(
-                    children: [
-                      Container(
-                        width: width * 0.5,
-                        height: height * 0.2,
-                        margin: const EdgeInsets.only(right: 20),
-                        child: const CircleAvatar(
-                          radius: 100,
-                          backgroundImage: AssetImage('lib/images/hardy.png'),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        width: width * 0.5,
-                        height: height * 0.1,
-                        child: const Text(
-                          'Tom Hardy',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 24, 24, 24),
-                            fontSize: 20,
-                            fontFamily: 'Roboto',
-                          ),
-                        ),
-                      )
-                    ],
-                  )
+                  for (final actor in actors.sublist(0, 2))
+                    ActorCard(actor: actor)
                 ],
               ),
             )

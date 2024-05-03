@@ -7,13 +7,13 @@ class Actor extends User{
   late List<String> imagesFromMovie;
 
   Actor({
-    required String name,
-    required int age,
-    required String image,
-    required String dateOfBirth,
+    required super.name,
+    required super.age,
+    required super.image,
+    required super.dateOfBirth,
     required this.role,
     required this.movies,
     required this.awards,
-    required this.imagesFromMovie,
+    required this.imagesFromMovie
   });
 }

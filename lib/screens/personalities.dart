@@ -3,7 +3,7 @@ import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 
 class Personalities extends StatefulWidget {
-  const Personalities({Key? key}) : super(key: key);
+  const Personalities({super.key});
   @override
   State<Personalities> createState() => _PersonalitiesPageState();
 }
@@ -12,13 +12,13 @@ class _PersonalitiesPageState extends State<Personalities> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
+    return const Scaffold(
       drawer: NavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             OwnAppBar(),
-            const CastPage(),
+            CastPage(),
           ],
         ),
       ),
@@ -27,7 +27,7 @@ class _PersonalitiesPageState extends State<Personalities> {
 }
 
 class CastPage extends StatelessWidget {
-  const CastPage({Key? key});
+  const CastPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -176,7 +176,7 @@ class CastMember {
 class CastMemberCard extends StatelessWidget {
   final CastMember castMember;
 
-  const CastMemberCard({Key? key, required this.castMember}) : super(key: key);
+  const CastMemberCard({super.key, required this.castMember});
 
   @override
   Widget build(BuildContext context) {
@@ -214,7 +214,7 @@ class CastMemberCard extends StatelessWidget {
 class ActorDetailsScreen extends StatelessWidget {
   final CastMember castMember;
 
-  const ActorDetailsScreen({Key? key, required this.castMember}) : super(key: key);
+  const ActorDetailsScreen({super.key, required this.castMember});
 
   @override
   Widget build(BuildContext context) {

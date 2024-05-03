@@ -13,7 +13,6 @@ class CinemaOverviewState extends State<CinemaOverview> {
   static const String title = 'INCEPTION';
   static const String fullText =
       'Cobb is a talented thief, the best of the best in the dangerous art of extraction: he steals valuable secrets from the depths of the subconscious during sleep, when the human mind is most vulnerable. Cobb\'s rare abilities made him a valuable player in the treacherous world of industrial espionage, but they also turned him into an eternal fugitive and deprived him of everything he had ever loved.';
-
   void _toggleExpanded() {
     setState(() {
       _isExpanded = !_isExpanded;
@@ -44,13 +43,22 @@ class CinemaOverviewState extends State<CinemaOverview> {
                 fontSize: 20.0,
                 color: Colors.black,
                 fontWeight: FontWeight.w400,
-                fontFamily: 'Roboto'),
+                fontFamily: 'Roboto',
+                height: 1.5,
+                letterSpacing: 0.5,
+                wordSpacing: 1.0,
+                decoration: TextDecoration.none,
+                decorationColor: Colors.black,
+                decorationStyle: TextDecorationStyle.solid,
+                decorationThickness: 1.0,
+                debugLabel: 'black display4'
+                ),
           ),
           const SizedBox(height: 8.0),
           TextButton(
             onPressed: _toggleExpanded,
             child: Text(
-              _isExpanded ? 'Свернуть' : 'Больше',
+              _isExpanded ? 'Hide' : 'Read more',
               style: const TextStyle(color: Colors.blue),
             ),
           ),
