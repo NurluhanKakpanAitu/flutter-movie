@@ -67,6 +67,17 @@ flutter:
     - lib/images/dicaprio.png
     - lib/images/hardy.png
     - lib/images/nolan.png
+    - lib/images/berenger.png
+    - lib/images/Dileep.png
+    - lib/images/elliot.png
+    - lib/images/joseph.png
+    - lib/images/lucas.png
+    - lib/images/marion.png
+    - lib/images/michael.png
+    - lib/images/murphy.png
+    - lib/images/nolan.png
+    - lib/images/tomas.png
+    - lib/images/watanabe.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
