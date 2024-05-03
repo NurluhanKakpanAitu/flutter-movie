@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/components/nav_bar.dart';
 
 class Personalities extends StatefulWidget {
-  const Personalities({super.key});
+  const Personalities({Key? key}) : super(key: key);
   @override
   State<Personalities> createState() => _PersonalitiesPageState();
 }
-
 
 class _PersonalitiesPageState extends State<Personalities> {
   @override
@@ -14,6 +14,7 @@ class _PersonalitiesPageState extends State<Personalities> {
     final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      drawer: NavBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -54,13 +55,13 @@ class _PersonalitiesPageState extends State<Personalities> {
 }
 
 class CastPage extends StatelessWidget {
-  const CastPage({super.key});
+  const CastPage({Key? key});
 
   @override
   Widget build(BuildContext context) {
     List<CastMember> castMembers = [
       CastMember(
-        name: 'Leonardo DiСaprio',
+        name: 'Leonardo DiCaprio',
         role: 'Cobb',
         originalImageAsset: 'lib/images/dicaprio.png',
         age: 47,
@@ -173,30 +174,11 @@ class CastPage extends StatelessWidget {
   }
 
   void _showActorDetails(BuildContext context, CastMember castMember) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(castMember.name),
-          content: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Age: ${castMember.age}'),
-              Text('Date of Birth: ${castMember.dateOfBirth}'),
-              Text('Sex: ${castMember.sex}'),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: const Text('Close'),
-            ),
-          ],
-        );
-      },
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ActorDetailsScreen(castMember: castMember),
+      ),
     );
   }
 }
@@ -222,7 +204,7 @@ class CastMember {
 class CastMemberCard extends StatelessWidget {
   final CastMember castMember;
 
-  const CastMemberCard({super.key, required this.castMember});
+  const CastMemberCard({Key? key, required this.castMember}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -256,3 +238,37 @@ class CastMemberCard extends StatelessWidget {
     );
   }
 }
+
+class ActorDetailsScreen extends StatelessWidget {
+  final CastMember castMember;
+
+  const ActorDetailsScreen({Key? key, required this.castMember}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(castMember.name),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CircleAvatar(
+              radius: 80,
+              backgroundImage: AssetImage(castMember.originalImageAsset),
+            ),
+            const SizedBox(height: 16),
+            Text('Name: ${castMember.name}'),
+            Text('Role: ${castMember.role}'),
+            Text('Age: ${castMember.age}'),
+            Text('Date of Birth: ${castMember.dateOfBirth}'),
+            Text('Sex: ${castMember.sex}'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
