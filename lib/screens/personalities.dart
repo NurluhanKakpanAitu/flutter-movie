@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 
 class Personalities extends StatefulWidget {
@@ -18,34 +19,7 @@ class _PersonalitiesPageState extends State<Personalities> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: width,
-              height: height * 0.15,
-              color: const Color.fromRGBO(58, 63, 71, 1.0),
-              child: Center(
-                child: Row(
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      child: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.menu,
-                          color: Color.fromRGBO(246, 247, 249, 1),
-                          size: 40,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      margin: EdgeInsets.only(left: (width * 0.27) - 10),
-                      child: Image.asset('lib/images/logo.png'),
-                    )
-                  ],
-                ),
-              ),
-            ),
+            OwnAppBar(),
             const CastPage(),
           ],
         ),

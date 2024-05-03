@@ -58,8 +58,7 @@ class NavBar extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const DirectorsProducersScreen()));
-<<<<<<< HEAD
-=======
+
             },
           ),
           ListTile(
@@ -70,7 +69,6 @@ class NavBar extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const Personalities()));
->>>>>>> main
             },
           ),
           ListTile(
@@ -79,13 +77,6 @@ class NavBar extends StatelessWidget {
             onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const News()));
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
-            onTap: () {
-              Navigator.pushNamed(context, '/profile');
             },
           ),
           ListTile(
