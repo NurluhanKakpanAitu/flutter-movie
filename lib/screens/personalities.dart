@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie/components/nav_bar.dart';
 
 class Personalities extends StatefulWidget {
   const Personalities({super.key});
@@ -46,7 +45,7 @@ class _PersonalitiesPageState extends State<Personalities> {
                 ),
               ),
             ),
-            CastPage(),
+            const CastPage(),
           ],
         ),
       ),
@@ -55,13 +54,13 @@ class _PersonalitiesPageState extends State<Personalities> {
 }
 
 class CastPage extends StatelessWidget {
-  const CastPage({Key? key}) : super(key: key);
+  const CastPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     List<CastMember> castMembers = [
       CastMember(
-        name: 'Leonardo DiCaprio',
+        name: 'Leonardo DiСaprio',
         role: 'Cobb',
         originalImageAsset: 'lib/images/dicaprio.png',
         age: 47,
@@ -160,7 +159,7 @@ class CastPage extends StatelessWidget {
 
     return ListView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: castMembers.length,
       itemBuilder: (context, index) {
         return GestureDetector(
@@ -193,7 +192,7 @@ class CastPage extends StatelessWidget {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Close'),
+              child: const Text('Close'),
             ),
           ],
         );
@@ -223,7 +222,7 @@ class CastMember {
 class CastMemberCard extends StatelessWidget {
   final CastMember castMember;
 
-  const CastMemberCard({Key? key, required this.castMember}) : super(key: key);
+  const CastMemberCard({super.key, required this.castMember});
 
   @override
   Widget build(BuildContext context) {
