@@ -3,6 +3,7 @@ import 'package:flutter_movie/main.dart';
 import 'package:flutter_movie/screens/cinema_screen.dart';
 import 'package:flutter_movie/screens/directors_and_producers.dart';
 import 'package:flutter_movie/screens/news.dart';
+import 'package:flutter_movie/screens/personalities.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
@@ -71,6 +72,16 @@ class NavBar extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => const Personalities()));
 >>>>>>> Stashed changes
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.movie),
+            title: const Text('Personalities'),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const Personalities()));
             },
           ),
           ListTile(
