@@ -80,13 +80,6 @@ class NavBar extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.person),
-            title: const Text('Profile'),
-            onTap: () {
-              Navigator.pushNamed(context, '/profile');
-            },
-          ),
-          ListTile(
             leading: const Icon(Icons.location_on),
             title: const Text('Find Cinemas'),
             onTap: () {
