@@ -79,13 +79,13 @@ class NavBar extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const News()));
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.location_on),
-            title: const Text('Find Cinemas'),
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const CinemaScreen()));
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.location_on),
+          //   title: const Text('Find Cinemas'),
+          //   onTap: () {
+          //     Navigator.push(context, MaterialPageRoute(builder: (context) => const CinemaScreen()));
+          //   },
+          // ),
         ],
       ),
     );

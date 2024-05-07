@@ -1,10 +1,35 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_movie/components/carousel.dart';
-import 'package:flutter_movie/models/actors.dart';
+import 'dart:convert';
+import 'dart:typed_data';
 
-class ActorModalForm extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:flutter_movie/models/actors.dart';
+import 'package:flutter_movie/services/file_service.dart';
+
+class ActorModalForm extends StatefulWidget{
   final Actor actor;
+
   const ActorModalForm({super.key, required this.actor});
+  @override
+  State<ActorModalForm> createState() {
+    return  ActorModalFormHome(actor: actor);
+  }
+
+} 
+
+
+class ActorModalFormHome extends State<ActorModalForm> {
+  final Actor actor;
+  late Future<String> image;
+  FileService fileService = FileService();
+
+  ActorModalFormHome({required this.actor});
+
+  @override
+  void initState() {
+    super.initState();
+    image = fileService.read(actor.image);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,10 +42,31 @@ class ActorModalForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(
-            radius: 100,
-            backgroundImage: AssetImage(actor.image),
-          ),
+          FutureBuilder<String?>(
+              future: image,
+              builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircleAvatar(
+                    radius: 100,
+                    backgroundColor: Colors.grey,
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.hasData && snapshot.data != null) {
+
+                  Uint8List bytes = base64Decode(snapshot.data!);
+                  return CircleAvatar(
+                    radius: 100,
+                    backgroundImage: MemoryImage(bytes),
+                  );
+                } else {
+                  return const CircleAvatar(
+                    radius: 100,
+                    backgroundColor: Colors.grey,
+                    child: Icon(Icons.error),
+                  );
+                }
+              },
+            ),
           const SizedBox(height: 10),
           const Text(
             'Актер',
@@ -125,7 +171,7 @@ class ActorModalForm extends StatelessWidget {
               : const Text('Нет информации'),
           const SizedBox(height: 5),
           const Text(
-            'Фото:',
+            'Биография:',
             style: TextStyle(
               fontSize: 16,
               fontFamily: 'Roboto',
@@ -133,9 +179,13 @@ class ActorModalForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          ImageCarousel(
-            items: actor.imagesFromMovie,
-            height: 200,
+          Text(
+            actor.biography,
+            style: const TextStyle(
+               fontFamily: 'Roboto',
+               fontSize: 16,
+               fontWeight: FontWeight.w400 
+            ),
           )
         ],
       ),
