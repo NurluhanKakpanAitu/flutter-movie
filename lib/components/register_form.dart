@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/services/account_service.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key, required this.onLogin});
@@ -14,7 +15,7 @@ class RegisterFormState extends State<RegisterForm> {
   final TextEditingController passwordController = TextEditingController();
   bool _isObscured = true; // State to track if password is obscured
 
-
+  AccountService accountService = AccountService();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -72,16 +73,29 @@ class RegisterFormState extends State<RegisterForm> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size(double.infinity,
-                      50), // double.infinity is the width and 50 is the height
+                      50), 
                 ),
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    print('Email: ${emailController.text}');
-                    print('Password: ${passwordController.text}');
-                    // Perform login action, like API call or navigation
+                    accountService
+                        .register(emailController.text, passwordController.text)
+                        .then((value) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Registration successful'),
+                        ),
+                      );
+                      widget.onLogin();
+                    }).catchError((error) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Registration failed: $error'),
+                        ),
+                      );
+                    });
                   }
                 },
-                child: Text('Register'),
+                child: const Text('Register'),
               ),
               const SizedBox(
                 height: 20,

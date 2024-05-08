@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/components/actor_modal_form.dart';
+import 'package:flutter_movie/components/circular_avatar.dart';
 import 'package:flutter_movie/models/actors.dart';
 import 'package:flutter_movie/services/file_service.dart';
 
@@ -45,30 +46,7 @@ class _ActorCardState extends State<ActorCard> {
         },
         child: Column(
           children: [
-            FutureBuilder<String>(
-              future: image,
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircleAvatar(
-                    radius: 100,
-                    backgroundColor: Colors.grey,
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (snapshot.hasData) {
-                  Uint8List bytes = base64Decode(snapshot.data!);
-                  return CircleAvatar(
-                    radius: 100,
-                    backgroundImage: MemoryImage(bytes),
-                  );
-                } else {
-                  return const CircleAvatar(
-                    radius: 100,
-                    backgroundColor: Colors.grey,
-                    child: Icon(Icons.error),
-                  );
-                }
-              },
-            ),
+            OwnCircularAvatar(image: image),
             const SizedBox(height: 10),
             const Text(
               'Актер',

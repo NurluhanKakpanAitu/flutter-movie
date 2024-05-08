@@ -57,7 +57,7 @@ class NavBar extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const DirectorsProducersScreen()));
+                      builder: (context) => const StuffScreen()));
 
             },
           ),

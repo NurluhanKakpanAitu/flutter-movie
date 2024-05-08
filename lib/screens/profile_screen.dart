@@ -5,7 +5,6 @@ import 'package:flutter_movie/components/nav_bar.dart';
 import 'package:flutter_movie/components/register_form.dart';
 import 'package:flutter_movie/components/user_account.dart';
 import 'package:flutter_movie/utils/token_storage.dart';
-import 'package:firebase_core/firebase_core.dart';
 
 
 class ProfileScreen extends StatelessWidget {

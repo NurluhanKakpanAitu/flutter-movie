@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter_movie/models/user_account.dart';
 import 'package:flutter_movie/utils/token_storage.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -10,7 +9,7 @@ import 'package:flutter_movie/models/response.dart';
 class AccountService {
     TokenStorage tokenStorage = TokenStorage();
     final String baseUrl = 'http://10.0.2.2:3000';
-    Future<UserAccount> register(String email, String password) async {
+    Future<void> register(String email, String password) async {
         var response = await http.post(
             Uri.parse('$baseUrl/register'),
             body: jsonEncode({'email': email, 'password': password}),
@@ -21,7 +20,6 @@ class AccountService {
         if (data.status != 200) {
             throw Exception(data.message);
         }
-        return UserAccount.fromJson(data.data);
     }
 
     Future<void> login(String email, String password) async {

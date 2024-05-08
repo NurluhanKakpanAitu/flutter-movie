@@ -6,7 +6,6 @@ class Response{
   Response({required this.status, required this.message, required this.data});
 
   static Response fromJson(responseBody) {
-    print(responseBody);
     return Response(
       status: responseBody['status'],
       message: responseBody['message'],
