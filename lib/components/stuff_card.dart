@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/components/circular_avatar.dart';
 import 'package:flutter_movie/models/stuff.dart';
