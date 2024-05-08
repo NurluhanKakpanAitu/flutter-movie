@@ -51,7 +51,7 @@ class SuffScreenHomeState extends State<StuffScreenHome> {
                   } else if (snapshot.hasData) {
                     return SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: Row(
+                      child: Column(
                         children: snapshot.data!
                             .map((stuff) => StuffCard(stuff: stuff))
                             .toList(),
