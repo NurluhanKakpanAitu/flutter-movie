@@ -41,27 +41,25 @@ class ProfileScreenHomeState extends State<ProfileScreenHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const NavBar(),
-      body: Container(
-        child: Column(
-          children: [
-            const OwnAppBar(),
-            FutureBuilder<bool>(
-              future: tokenStorage.hasToken(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                } else if (snapshot.hasError) {
-                  return Text('Error: ${snapshot.error}');
-                } else {
-                  bool hasToken = snapshot.data ?? false;
-                  return hasToken ? const UserAccountHome() : (showLoginForm
-                          ? LoginForm(onRegister: toggleForm)
-                          : RegisterForm(onLogin: toggleForm));
-                }
-              },
-            )
-          ],
-        ),
+      body: Column(
+        children: [
+          const OwnAppBar(),
+          FutureBuilder<bool>(
+            future: tokenStorage.hasToken(),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                bool hasToken = snapshot.data ?? false;
+                return hasToken ? const UserAccountHome() : (showLoginForm
+                        ? LoginForm(onRegister: toggleForm)
+                        : RegisterForm(onLogin: toggleForm));
+              }
+            },
+          )
+        ],
       ),
     );
   }

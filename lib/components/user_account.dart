@@ -26,7 +26,7 @@ class _UserAccountHomeState extends State<UserAccountHome> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           FutureBuilder<UserAccount>(
@@ -102,6 +102,7 @@ class _UserAccountHomeState extends State<UserAccountHome> {
           ElevatedButton(
             onPressed: () async {
               await accountService.logout();
+              // ignore: use_build_context_synchronously
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const MyApp()));
             },

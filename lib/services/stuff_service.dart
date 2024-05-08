@@ -16,4 +16,57 @@ class StuffService {
     }
     throw Exception(data.message);
   }
+
+  Future<Stuff> getMemberOfStuff(String id) async {
+    var response = await http.get(Uri.parse('$baseUrl/stuff/$id'));
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if (data.status == 200) {
+      return Stuff.fromJson(data.data);
+    }
+    throw Exception(data.message);
+  }
+
+
+  Future<String> addMemberOfStuff(Stuff stuff) async {
+    var response = await http.post(
+      Uri.parse('$baseUrl/stuff/add'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(stuff.toJson()),
+    );
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if (data.status == 200) {
+      return data.data;
+    }
+    throw Exception(data.message);
+  }
+
+  Future<String> updateMemberOfStuff(Stuff stuff) async {
+    var response = await http.put(
+      Uri.parse('$baseUrl/stuff/update/${stuff.id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(stuff.toJson()),
+    );
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if (data.status == 200) {
+      return data.data;
+    }
+    throw Exception(data.message);
+  }
+
+
+  Future<void> deleteMemberOfStuff(String id) async {
+    var response = await http.delete(Uri.parse('$baseUrl/stuff/delete/$id'));
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if (data.status != 200) {
+      throw Exception(data.message);
+    }
+  }
 }

@@ -11,23 +11,23 @@ class ActorCard extends StatefulWidget{
 
   const ActorCard({super.key, required this.actor});
   @override
-  State<ActorCard> createState() => _ActorCardState(actor: actor);
+  State<ActorCard> createState() => _ActorCardState();
 }
 
 
 class _ActorCardState extends State<ActorCard> {
-  final Actor actor;
+
 
   late Future<String> image;
   FileService fileService = FileService();
 
-  _ActorCardState({required this.actor});
+  _ActorCardState();
 
 
   @override
   void initState() {
     super.initState();  
-    image = fileService.read(actor.image);
+    image = fileService.read(widget.actor.image);
   }
 
   @override
@@ -38,7 +38,7 @@ class _ActorCardState extends State<ActorCard> {
         onTap: () {
           showDialog(
             context: context,
-            builder: (context) => ActorModalForm(actor: actor),
+            builder: (context) => ActorModalForm(actor: widget.actor),
           );
         },
         child: Column(
@@ -51,13 +51,13 @@ class _ActorCardState extends State<ActorCard> {
             ),
             const SizedBox(height: 5),
             Text(
-              actor.name,
+              widget.actor.name,
               softWrap: true,
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, fontFamily: 'Roboto'),
             ),
             const SizedBox(height: 5),
             Text(
-              'Роль: ${actor.role}',
+              'Роль: ${widget.actor.role}',
               style: const TextStyle(fontSize: 16, fontFamily: 'Roboto', fontWeight: FontWeight.w400),
             ),
           ],

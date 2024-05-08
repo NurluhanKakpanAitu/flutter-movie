@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/main.dart';
-import 'package:flutter_movie/screens/directors_and_producers.dart';
+import 'package:flutter_movie/screens/stuff_screen.dart';
 import 'package:flutter_movie/screens/news.dart';
 import 'package:flutter_movie/screens/personalities.dart';
 import 'package:flutter_movie/screens/profile_screen.dart';
@@ -52,7 +52,7 @@ class NavBar extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.movie),
-            title: const Text('Directors and Producers'),
+            title: const Text('Stuff members'),
             onTap: () {
               Navigator.push(
                   context,

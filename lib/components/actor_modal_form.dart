@@ -11,23 +11,22 @@ class ActorModalForm extends StatefulWidget{
   const ActorModalForm({super.key, required this.actor});
   @override
   State<ActorModalForm> createState() {
-    return  ActorModalFormHome(actor: actor);
+    return  ActorModalFormHome();
   }
 
 } 
 
 
 class ActorModalFormHome extends State<ActorModalForm> {
-  final Actor actor;
   late Future<String> image;
   FileService fileService = FileService();
 
-  ActorModalFormHome({required this.actor});
+  ActorModalFormHome();
 
   @override
   void initState() {
     super.initState();
-    image = fileService.read(actor.image);
+    image = fileService.read(widget.actor.image);
   }
 
   @override
@@ -77,7 +76,7 @@ class ActorModalFormHome extends State<ActorModalForm> {
           ),
           const SizedBox(height: 5),
           Text(
-            actor.name,
+            widget.actor.name,
             softWrap: true,
             style: const TextStyle(
               fontSize: 18,
@@ -87,7 +86,7 @@ class ActorModalFormHome extends State<ActorModalForm> {
           ),
           const SizedBox(height: 5),
           Text(
-            'Роль: ${actor.role}',
+            'Роль: ${widget.actor.role}',
             style: const TextStyle(
               fontSize: 16,
               fontFamily: 'Roboto',
@@ -96,7 +95,7 @@ class ActorModalFormHome extends State<ActorModalForm> {
           ),
           const SizedBox(height: 5),
           Text(
-            'Возраст: ${actor.age}',
+            'Возраст: ${widget.actor.age}',
             style: const TextStyle(
               fontSize: 16,
               fontFamily: 'Roboto',
@@ -113,18 +112,18 @@ class ActorModalFormHome extends State<ActorModalForm> {
             ),
           ),
           const SizedBox(height: 5),
-          actor.movies.isNotEmpty
+          widget.actor.movies.isNotEmpty
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListView.builder(
                       shrinkWrap: true,
-                      itemCount: actor.movies.length,
+                      itemCount: widget.actor.movies.length,
                       itemBuilder: (context, index) {
                         return SizedBox(
                           height: 30,
                           child: Text(
-                            actor.movies[index],
+                            widget.actor.movies[index],
                             style: const TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'Roboto',
@@ -146,18 +145,18 @@ class ActorModalFormHome extends State<ActorModalForm> {
             ),
           ),
           const SizedBox(height: 5),
-          actor.awards.isNotEmpty
+          widget.actor.awards.isNotEmpty
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ListView.builder(
                       shrinkWrap: true,
-                      itemCount: actor.awards.length,
+                      itemCount: widget.actor.awards.length,
                       itemBuilder: (context, index) {
                         return SizedBox(
                           height: 30,
                           child: Text(
-                            actor.awards[index],
+                            widget.actor.awards[index],
                             style: const TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'Roboto',
@@ -180,7 +179,7 @@ class ActorModalFormHome extends State<ActorModalForm> {
           ),
           const SizedBox(height: 5),
           Text(
-            actor.biography,
+            widget.actor.biography,
             style: const TextStyle(
                fontFamily: 'Roboto',
                fontSize: 16,
