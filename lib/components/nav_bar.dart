@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/main.dart';
-import 'package:flutter_movie/screens/cinema_screen.dart';
 import 'package:flutter_movie/screens/directors_and_producers.dart';
 import 'package:flutter_movie/screens/news.dart';
 import 'package:flutter_movie/screens/personalities.dart';
+import 'package:flutter_movie/screens/profile_screen.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
@@ -86,6 +86,15 @@ class NavBar extends StatelessWidget {
           //     Navigator.push(context, MaterialPageRoute(builder: (context) => const CinemaScreen()));
           //   },
           // ),
+          ListTile(
+            leading: const Icon(
+              Icons.person,
+            ),
+            title: const Text('Profile'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
+            },
+          )
         ],
       ),
     );

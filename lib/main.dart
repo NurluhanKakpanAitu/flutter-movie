@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/screens/main_screen.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
 }
 
