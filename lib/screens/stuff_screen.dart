@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 import 'package:flutter_movie/components/stuff_card.dart';
+import 'package:flutter_movie/components/stuff_form.dart';
 import 'package:flutter_movie/models/stuff.dart';
 import 'package:flutter_movie/services/stuff_service.dart';
 
@@ -63,7 +64,10 @@ class SuffScreenHomeState extends State<StuffScreenHome> {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                  context: context, builder: (context) => const StuffForm());
+            },
             child: const Text('Add new stuff member'),
           )
         ],
