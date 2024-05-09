@@ -30,7 +30,7 @@ class StuffService {
 
   Future<String> addMemberOfStuff(Stuff stuff) async {
     var response = await http.post(
-      Uri.parse('$baseUrl/stuff/add'),
+      Uri.parse('$baseUrl/stuff/create'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

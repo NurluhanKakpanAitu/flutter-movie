@@ -1,11 +1,13 @@
 class Stuff {
-  final String id;
-  final String name;
-  final String activity;
-  final String image;
-  final String? biograpthy;
+  late String? id;
+  late String name;
+  late String activity;
+  late String image;
+  late String? biography;
 
-  Stuff(this.id, this.name, this.activity, this.image, this.biograpthy);
+  Stuff(this.id, this.name, this.activity, this.image, this.biography);
+
+  
 
   static Stuff fromJson(Map<String, dynamic> json) {
     return Stuff(
@@ -13,7 +15,7 @@ class Stuff {
       json['name'],
       json['activity'],
       json['image'],
-      json['biograpthy']
+      json['biograрhy']
     );
   }
 
@@ -23,7 +25,7 @@ class Stuff {
       'name': name,
       'activity': activity,
       'image': image,
-      'biograpthy': biograpthy
+      'biography': biography
     };
   }
 }

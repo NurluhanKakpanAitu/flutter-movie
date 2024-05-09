@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:flutter_movie/models/response.dart';
 import 'package:http/http.dart' as http;
+import 'package:http_parser/http_parser.dart';
 
 class FileService {
   final String baseUrl = 'http://10.0.2.2:3000';
@@ -26,7 +27,23 @@ class FileService {
     try {
       Uri uri = Uri.parse('$baseUrl/upload');
       var request = http.MultipartRequest('POST', uri);
-      request.files.add(await http.MultipartFile.fromPath('image', photo.path));
+      String fileExtension = photo.path.split('.').last.toLowerCase();
+      MediaType? contentType;
+      switch (fileExtension) {
+        case 'png':
+          contentType = MediaType('image', 'png');
+          break;
+        case 'jpg':
+          contentType = MediaType('image', 'jpg');
+          break;
+        case 'jpeg':
+          contentType = MediaType('image', 'jpeg');
+          break;
+        default:
+          throw Exception('Unsupported file type');
+      }
+      request.files.add(await http.MultipartFile.fromPath('file', photo.path,
+          contentType: contentType));
       request.headers.addAll({
         'accept': '*/*',
         'Content-Type': 'multipart/form-data',
@@ -39,7 +56,7 @@ class FileService {
       }
       throw Exception(data.message);
     } catch (error) {
-      throw Exception(error.toString());
+      throw Exception(error);
     }
   }
 }

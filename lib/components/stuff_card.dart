@@ -46,21 +46,21 @@ class _StuffCardState extends State<StuffCard> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           OwnCircularAvatar(image: image),
-          const SizedBox(width: 40),
+          const SizedBox(width: 20),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 widget.stuff.name,
                 style: const TextStyle(
-                  fontSize: 20,
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 widget.stuff.activity,
                 style: const TextStyle(
-                  fontSize: 15,
+                  fontSize: 14,
                 ),
               ),
               Container(
@@ -70,7 +70,7 @@ class _StuffCardState extends State<StuffCard> {
                     IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
                     IconButton(
                       onPressed: () async {
-                        await stuffService.deleteMemberOfStuff(widget.stuff.id);
+                        await stuffService.deleteMemberOfStuff(widget.stuff.id!);
                         Navigator.pushReplacement(
                           context,
                           PageRouteBuilder(
