@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie/components/actor_card.dart';
+import 'package:flutter_movie/components/actor/actor_card.dart';
 import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/cinema_main_info.dart';
 import 'package:flutter_movie/components/cinema_overview.dart';

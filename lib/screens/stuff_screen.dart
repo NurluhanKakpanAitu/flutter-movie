@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
-import 'package:flutter_movie/components/stuff_card.dart';
-import 'package:flutter_movie/components/stuff_form.dart';
+import 'package:flutter_movie/components/stuff/stuff_card.dart';
+import 'package:flutter_movie/components/stuff/stuff_form.dart';
 import 'package:flutter_movie/models/stuff.dart';
 import 'package:flutter_movie/services/stuff_service.dart';
 
