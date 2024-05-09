@@ -40,4 +40,28 @@ class ActorService{
       throw Exception(data.message);
     }
   }
+
+  Future<void> updateActor(Actor actor) async {
+    var response = await http.put(
+      Uri.parse('$baseUrl/actor/update/${actor.id}'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(actor.toJson()),
+    );
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if(data.status != 200){
+      throw Exception(data.message);
+    }
+  }
+
+  Future<void> deleteActor(String id) async {
+    var response = await http.delete(Uri.parse('$baseUrl/actor/delete/$id'));
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if(data.status != 200){
+      throw Exception(data.message);
+    }
+  }
 } 
