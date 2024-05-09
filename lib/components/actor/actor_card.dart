@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie/components/actor/actor_modal_form.dart';
 import 'package:flutter_movie/components/circular_avatar.dart';
 import 'package:flutter_movie/models/actors.dart';
+import 'package:flutter_movie/screens/actor_detail_screen.dart';
 import 'package:flutter_movie/services/file_service.dart';
 
 
@@ -36,10 +36,7 @@ class _ActorCardState extends State<ActorCard> {
       padding: const EdgeInsets.all(10.0),
       child: GestureDetector(
         onTap: () {
-          showDialog(
-            context: context,
-            builder: (context) => ActorModalForm(actor: widget.actor),
-          );
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>ActorDetailScreen(actor: widget.actor)));
         },
         child: Column(
           children: [

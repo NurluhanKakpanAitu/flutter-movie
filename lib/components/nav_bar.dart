@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie/main.dart';
 import 'package:flutter_movie/screens/stuff_screen.dart';
 import 'package:flutter_movie/screens/news.dart';
-import 'package:flutter_movie/screens/personalities.dart';
+import 'package:flutter_movie/screens/actor_screen.dart';
 import 'package:flutter_movie/screens/profile_screen.dart';
 
 class NavBar extends StatelessWidget {
@@ -68,7 +68,7 @@ class NavBar extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const Personalities()));
+                      builder: (context) => const ActorScreen()));
             },
           ),
           ListTile(

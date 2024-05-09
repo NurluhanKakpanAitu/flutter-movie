@@ -24,4 +24,20 @@ class ActorService{
     }
     throw Exception(data.message);
   }
+
+
+  Future<void> addActor(Actor actor) async {
+    var response = await http.post(
+      Uri.parse('$baseUrl/actor/create'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(actor.toJson()),
+    );
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if(data.status != 200){
+      throw Exception(data.message);
+    }
+  }
 } 
