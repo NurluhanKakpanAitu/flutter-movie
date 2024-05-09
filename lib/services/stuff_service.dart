@@ -44,9 +44,9 @@ class StuffService {
     throw Exception(data.message);
   }
 
-  Future<String> updateMemberOfStuff(Stuff stuff) async {
+  Future<void> updateMemberOfStuff(Stuff stuff) async {
     var response = await http.put(
-      Uri.parse('$baseUrl/stuff/update/${stuff.id}'),
+      Uri.parse('$baseUrl/stuff/update'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -54,10 +54,9 @@ class StuffService {
     );
     var responseBody = jsonDecode(response.body);
     var data = Response.fromJson(responseBody);
-    if (data.status == 200) {
-      return data.data;
+    if (data.status != 200) {
+      throw Exception(data.message); 
     }
-    throw Exception(data.message);
   }
 
 
