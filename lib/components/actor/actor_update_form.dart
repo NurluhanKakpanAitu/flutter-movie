@@ -3,20 +3,21 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/models/actors.dart';
 import 'package:flutter_movie/screens/actor_screen.dart';
+import 'package:flutter_movie/services/actor_service.dart';
 import 'package:flutter_movie/services/file_service.dart';
 import 'package:flutter_movie/utils/helpers.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../services/actor_service.dart';
+class UpdateActorDialog extends StatefulWidget {
+  final Actor actor;
 
-class ActorForm extends StatefulWidget {
-  const ActorForm({super.key});
+  const UpdateActorDialog({super.key, required this.actor});
 
   @override
-  ActorFormState createState() => ActorFormState();
+  UpdateActorDialogState createState() => UpdateActorDialogState();
 }
 
-class ActorFormState extends State<ActorForm> {
+class UpdateActorDialogState extends State<UpdateActorDialog> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController nameController;
   late TextEditingController roleController;
@@ -35,13 +36,17 @@ class ActorFormState extends State<ActorForm> {
   @override
   void initState() {
     super.initState();
-    nameController = TextEditingController();
-    roleController = TextEditingController();
-    ageController = TextEditingController();
-    biographyController = TextEditingController();
-    dateOfBirthController = TextEditingController();
-    moviesController = TextEditingController();
-    awardsController = TextEditingController();
+    nameController = TextEditingController(text: widget.actor.name);
+    roleController = TextEditingController(text: widget.actor.role);
+    ageController = TextEditingController(text: widget.actor.age.toString());
+    biographyController = TextEditingController(text: widget.actor.biography);
+    dateOfBirthController =
+        TextEditingController(text: widget.actor.dateOfBirth ?? '');
+    moviesController =
+        TextEditingController(text: widget.actor.movies.join(', '));
+    awardsController =
+        TextEditingController(text: widget.actor.awards.join(', '));
+    image = widget.actor.image;
   }
 
   Future<void> pickImage() async {
@@ -90,7 +95,7 @@ class ActorFormState extends State<ActorForm> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Create Actor'),
+      title: const Text('Update Actor'),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -159,6 +164,14 @@ class ActorFormState extends State<ActorForm> {
               ),
               const SizedBox(height: 10),
               TextFormField(
+                controller: dateOfBirthController,
+                decoration: const InputDecoration(
+                  labelText: 'Date of Birth',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextFormField(
                 controller: moviesController,
                 decoration: const InputDecoration(
                   labelText: 'Movies (comma separated)',
@@ -215,30 +228,29 @@ class ActorFormState extends State<ActorForm> {
         ElevatedButton(
           onPressed: () async {
             if (validate()) {
-              var newActor = Actor(
-                  id: null,
-                  role: roleController.text,
-                  movies: moviesController.text
-                      .split(',')
-                      .map((e) => e.trim())
-                      .toList(),
-                  awards: awardsController.text
-                      .split(',')
-                      .map((e) => e.trim())
-                      .toList(),
-                  biography: biographyController.text,
-                  name: nameController.text,
-                  age: int.parse(ageController.text),
-                  image: image!);
-              await actorService.addActor(newActor);
-              // ignore: use_build_context_synchronously
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const ActorScreen()));
+              var updatedActor = Actor(
+                id: widget.actor.id,
+                role: roleController.text,
+                movies: moviesController.text
+                    .split(',')
+                    .map((e) => e.trim())
+                    .toList(),
+                awards: awardsController.text
+                    .split(',')
+                    .map((e) => e.trim())
+                    .toList(),
+                biography: biographyController.text,
+                name: nameController.text,
+                age: int.parse(ageController.text),
+                image: image!,
+              );
+              await actorService.updateActor(updatedActor);
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ActorScreen()));
             } else {
               Helper.showErrorDialog(context, 'Please fill all fields');
             }
           },
-          child: const Text('Create'),
+          child: const Text('Update'),
         ),
       ],
     );

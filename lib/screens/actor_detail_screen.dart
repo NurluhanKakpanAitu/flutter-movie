@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/components/actor/actor_update_form.dart';
 import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/circular_avatar.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
@@ -61,10 +62,13 @@ class ActorDetailScreenHomeState extends State<ActorDetailScreenHome> {
                     children: [
                       OwnCircularAvatar(image: image),
                       IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.edit)),
+                          onPressed: () {
+                            showDialog(context: context, builder: (context) => UpdateActorDialog(actor: widget.actor));
+                          }, icon: const Icon(Icons.edit)),
                       IconButton(
                           onPressed: () async {
                             await actorService.deleteActor(widget.actor.id!);
+                            // ignore: use_build_context_synchronously
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) => const ActorScreen()));
                           },
