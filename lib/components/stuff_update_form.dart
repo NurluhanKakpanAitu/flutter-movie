@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/models/stuff.dart';
-import 'package:flutter_movie/screens/stuff_details_screen.dart';
 import 'package:flutter_movie/screens/stuff_screen.dart';
 import 'package:flutter_movie/services/file_service.dart';
 import 'package:flutter_movie/services/stuff_service.dart';
