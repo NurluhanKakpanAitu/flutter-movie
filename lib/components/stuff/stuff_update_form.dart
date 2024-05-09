@@ -14,6 +14,7 @@ class UpdateStuffDialog extends StatefulWidget {
   const UpdateStuffDialog({super.key, required this.stuff});
 
   @override
+  // ignore: library_private_types_in_public_api
   _UpdateStuffDialogState createState() => _UpdateStuffDialogState();
 }
 
@@ -63,12 +64,14 @@ class _UpdateStuffDialogState extends State<UpdateStuffDialog> {
           Helper.showErrorDialog(context, error.toString());
         });
       } else {
+        // ignore: use_build_context_synchronously
         Helper.showErrorDialog(context, 'No image selected');
       }
     } catch (error) {
       setState(() {
         isLoading = false; // Set loading to false in case of error
       });
+      // ignore: use_build_context_synchronously
       Helper.showErrorDialog(context, error.toString());
     }
   }

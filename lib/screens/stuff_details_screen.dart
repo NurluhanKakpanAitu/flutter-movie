@@ -81,6 +81,7 @@ class StuffDetailHomeState extends State<StuffDetailsScreenHome> {
                 IconButton(
                   onPressed: () async {
                     await stuffService.deleteMemberOfStuff(widget.stuff.id!);
+                    // ignore: use_build_context_synchronously
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => const StuffScreen()));
                   },
