@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/components/actor/actor_card.dart';
+import 'package:flutter_movie/components/actor/actor_create_form.dart';
 import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 import 'package:flutter_movie/models/actors.dart';
@@ -65,7 +66,9 @@ class ActorScreenHomeState extends State<ActorScreenHome> {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(context: context, builder:(context) => const ActorForm());
+            },
             child: const Text('Add actor'),
           ),
         ],

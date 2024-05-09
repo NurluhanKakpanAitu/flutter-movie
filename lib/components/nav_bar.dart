@@ -63,7 +63,7 @@ class NavBar extends StatelessWidget {
           ),
           ListTile(
             leading: const Icon(Icons.movie),
-            title: const Text('Personalities'),
+            title: const Text('Actors'),
             onTap: () {
               Navigator.push(
                   context,

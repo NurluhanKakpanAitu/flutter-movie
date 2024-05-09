@@ -3,6 +3,8 @@ import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/circular_avatar.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 import 'package:flutter_movie/models/actors.dart';
+import 'package:flutter_movie/screens/actor_screen.dart';
+import 'package:flutter_movie/services/actor_service.dart';
 import 'package:flutter_movie/services/file_service.dart';
 
 class ActorDetailScreen extends StatelessWidget {
@@ -30,6 +32,7 @@ class ActorDetailScreenHome extends StatefulWidget {
 class ActorDetailScreenHomeState extends State<ActorDetailScreenHome> {
   late Future<String> image;
   FileService fileService = FileService();
+  ActorService actorService = ActorService();
 
   @override
   void initState() {
@@ -52,7 +55,22 @@ class ActorDetailScreenHomeState extends State<ActorDetailScreenHome> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  OwnCircularAvatar(image: image),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      OwnCircularAvatar(image: image),
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.edit)),
+                      IconButton(
+                          onPressed: () async {
+                            await actorService.deleteActor(widget.actor.id!);
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const ActorScreen()));
+                          },
+                          icon: const Icon(Icons.delete)),
+                    ],
+                  ),
                   const SizedBox(height: 10),
                   const Text(
                     'Актер',
@@ -143,7 +161,7 @@ class ActorDetailScreenHomeState extends State<ActorDetailScreenHome> {
                                 physics: const NeverScrollableScrollPhysics(),
                                 itemCount: widget.actor.awards.length,
                                 itemBuilder: (context, index) {
-                                  return ListTile( 
+                                  return ListTile(
                                     title: Text(
                                       widget.actor.awards[index],
                                       style: const TextStyle(

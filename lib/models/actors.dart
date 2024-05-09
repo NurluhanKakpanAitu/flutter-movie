@@ -25,9 +25,9 @@ class Actor extends User{
       age: actor['age'],
       image: actor['image'],
       role: actor['role'],
-      movies: actor['films'] ,
+      movies: actor['movies'] ,
       awards: actor['awards'] ,
-      biography: actor['biography'],
+      biography: actor['biography'], 
     );
   }
 
