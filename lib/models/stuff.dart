@@ -15,7 +15,7 @@ class Stuff {
       json['name'],
       json['activity'],
       json['image'],
-      json['biograрhy']
+      json['biography']
     );
   }
 

@@ -50,12 +50,14 @@ class StuffFormState extends State<StuffForm> {
           showErrorDialog(context, error.toString());
         });
       } else {
+        // ignore: use_build_context_synchronously
         showErrorDialog(context, 'No image selected');
       }
     } catch (error) {
       setState(() {
         isLoading = false; // Set loading to false in case of error
       });
+      // ignore: use_build_context_synchronously
       showErrorDialog(context, error.toString());
     }
   }
@@ -138,6 +140,7 @@ class StuffFormState extends State<StuffForm> {
                       );
                       await stuffService.addMemberOfStuff(stuff);
                       Navigator.pushReplacement(
+                          // ignore: use_build_context_synchronously
                           context,
                           PageRouteBuilder(
                             pageBuilder: (context, animation1, animation2) =>

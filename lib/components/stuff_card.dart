@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/components/circular_avatar.dart';
 import 'package:flutter_movie/models/stuff.dart';
+import 'package:flutter_movie/screens/stuff_details_screen.dart';
 import 'package:flutter_movie/screens/stuff_screen.dart';
 import 'package:flutter_movie/services/file_service.dart';
 import 'package:flutter_movie/services/stuff_service.dart';
@@ -45,7 +46,17 @@ class _StuffCardState extends State<StuffCard> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          OwnCircularAvatar(image: image),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => StuffDetailsScreen(stuff: widget.stuff),
+                ),
+              );
+            },
+            child: OwnCircularAvatar(image: image),
+          ),
           const SizedBox(width: 20),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -72,6 +83,7 @@ class _StuffCardState extends State<StuffCard> {
                       onPressed: () async {
                         await stuffService.deleteMemberOfStuff(widget.stuff.id!);
                         Navigator.pushReplacement(
+                          // ignore: use_build_context_synchronously
                           context,
                           PageRouteBuilder(
                             pageBuilder: (context, animation1, animation2) =>
