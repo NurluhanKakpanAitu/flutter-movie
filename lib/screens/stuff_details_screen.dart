@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/circular_avatar.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
+import 'package:flutter_movie/components/stuff_update_form.dart';
 import 'package:flutter_movie/models/stuff.dart';
 import 'package:flutter_movie/screens/stuff_screen.dart';
 import 'package:flutter_movie/services/file_service.dart';
@@ -71,7 +72,9 @@ class StuffDetailHomeState extends State<StuffDetailsScreenHome> {
                 ),
                 const SizedBox(width: 5),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    showDialog(context: context, builder: (context) => UpdateStuffDialog(stuff: widget.stuff));
+                  },
                   icon: const Icon(Icons.edit),
                 ),
                 const SizedBox(width: 5),

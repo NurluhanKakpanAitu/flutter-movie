@@ -2,30 +2,43 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/models/stuff.dart';
+import 'package:flutter_movie/screens/stuff_details_screen.dart';
 import 'package:flutter_movie/screens/stuff_screen.dart';
 import 'package:flutter_movie/services/file_service.dart';
 import 'package:flutter_movie/services/stuff_service.dart';
 import 'package:flutter_movie/utils/helpers.dart';
 import 'package:image_picker/image_picker.dart';
 
-class StuffForm extends StatefulWidget {
-  const StuffForm({super.key});
+class UpdateStuffDialog extends StatefulWidget {
+  final Stuff stuff;
+
+  const UpdateStuffDialog({super.key, required this.stuff});
 
   @override
-  StuffFormState createState() => StuffFormState();
+  _UpdateStuffDialogState createState() => _UpdateStuffDialogState();
 }
 
-class StuffFormState extends State<StuffForm> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController activityController = TextEditingController();
-  TextEditingController bioController = TextEditingController();
+class _UpdateStuffDialogState extends State<UpdateStuffDialog> {
+  late TextEditingController nameController;
+  late TextEditingController activityController;
+  late TextEditingController bioController;
   String? image;
   XFile? pickedFile;
   FileService fileService = FileService();
   StuffService stuffService = StuffService();
+   
 
   final picker = ImagePicker();
   bool isLoading = false; // Add a boolean variable to track loading state
+
+  @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController(text: widget.stuff.name);
+    activityController = TextEditingController(text: widget.stuff.activity);
+    bioController = TextEditingController(text: widget.stuff.biography);
+    image = widget.stuff.image;
+  }
 
   Future<void> pickImage() async {
     try {
@@ -51,14 +64,12 @@ class StuffFormState extends State<StuffForm> {
           Helper.showErrorDialog(context, error.toString());
         });
       } else {
-        // ignore: use_build_context_synchronously
         Helper.showErrorDialog(context, 'No image selected');
       }
     } catch (error) {
       setState(() {
         isLoading = false; // Set loading to false in case of error
       });
-      // ignore: use_build_context_synchronously
       Helper.showErrorDialog(context, error.toString());
     }
   }
@@ -72,22 +83,12 @@ class StuffFormState extends State<StuffForm> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.sizeOf(context).width;
-    final height = MediaQuery.sizeOf(context).height;
     return AlertDialog(
-      content: Container(
-        padding: const EdgeInsets.only(top: 20),
-        alignment: Alignment.center,
-        height: height * 0.7,
-        width: width * 0.9,
+      title: const Text('Update Stuff'),
+      content: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Add new stuff',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 20),
             TextFormField(
               controller: nameController,
               decoration: const InputDecoration(
@@ -96,7 +97,7 @@ class StuffFormState extends State<StuffForm> {
               ),
               maxLines: 1,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             TextFormField(
               controller: activityController,
               decoration: const InputDecoration(
@@ -105,7 +106,7 @@ class StuffFormState extends State<StuffForm> {
               ),
               maxLines: 1,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             TextFormField(
               controller: bioController,
               decoration: const InputDecoration(
@@ -114,8 +115,9 @@ class StuffFormState extends State<StuffForm> {
               ),
               maxLines: 3,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
             Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 if (isLoading) // Show CircularProgressIndicator when loading
                   const CircularProgressIndicator()
@@ -128,21 +130,30 @@ class StuffFormState extends State<StuffForm> {
                   onPressed: pickImage,
                   child: const Text('Pick Image'),
                 ),
-                const SizedBox(height: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () async {
-                        if (validate()) {
-                          var stuff = Stuff(
-                              null,
-                              nameController.text,
-                              activityController.text,
-                              image!,
-                              bioController.text);
-                          await stuffService.addMemberOfStuff(stuff);
-                          Navigator.pushReplacement(
+              ],
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Cancel'),
+        ),
+        ElevatedButton(
+          onPressed: () async {
+            if (validate()) {
+              var updatedStuff = Stuff(
+                widget.stuff.id,
+                nameController.text,
+                activityController.text,
+                image!,
+                bioController.text,
+              );
+              await stuffService.updateMemberOfStuff(updatedStuff);
+              Navigator.pushReplacement(
                             // ignore: use_build_context_synchronously
                             context,
                             PageRouteBuilder(
@@ -152,26 +163,13 @@ class StuffFormState extends State<StuffForm> {
                               reverseTransitionDuration: Duration.zero,
                             ),
                           );
-                        } else {
-                          Helper.showErrorDialog(context, 'Please fill all fields');
-                        }
-                      },
-                      child: const Text('Submit'),
-                    ),
-                    const SizedBox(width: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Cancel'),
-                    ),
-                  ],
-                )
-              ],
-            )
-          ],
+            } else {
+              Helper.showErrorDialog(context, 'Please fill all fields');
+            }
+          },
+          child: const Text('Update'),
         ),
-      ),
+      ],
     );
   }
 
@@ -183,5 +181,3 @@ class StuffFormState extends State<StuffForm> {
     super.dispose();
   }
 }
-
-
