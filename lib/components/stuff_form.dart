@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/models/stuff.dart';
+import 'package:flutter_movie/screens/stuff_screen.dart';
 import 'package:flutter_movie/services/file_service.dart';
 import 'package:flutter_movie/services/stuff_service.dart';
 import 'package:image_picker/image_picker.dart';
@@ -23,29 +24,41 @@ class StuffFormState extends State<StuffForm> {
   StuffService stuffService = StuffService();
 
   final picker = ImagePicker();
+  bool isLoading = false; // Add a boolean variable to track loading state
 
   Future<void> pickImage() async {
-  try {
-    pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    try {
+      pickedFile = await picker.pickImage(source: ImageSource.gallery);
 
-    if (pickedFile != null) {
-      File imageFile = File(pickedFile!.path);
+      if (pickedFile != null) {
+        File imageFile = File(pickedFile!.path);
 
-      // Upload the file and update the state after the upload completes
-      fileService.upload(imageFile).then((value) {
         setState(() {
-          image = value;
+          isLoading = true; // Set loading to true
         });
-      }).catchError((error) {
-        showErrorDialog(context, error.toString());
+
+        // Upload the file and update the state after the upload completes
+        fileService.upload(imageFile).then((value) {
+          setState(() {
+            image = value;
+            isLoading = false; // Set loading to false after upload
+          });
+        }).catchError((error) {
+          setState(() {
+            isLoading = false; // Set loading to false in case of error
+          });
+          showErrorDialog(context, error.toString());
+        });
+      } else {
+        showErrorDialog(context, 'No image selected');
+      }
+    } catch (error) {
+      setState(() {
+        isLoading = false; // Set loading to false in case of error
       });
-    } else {
-      showErrorDialog(context, 'No image selected');
+      showErrorDialog(context, error.toString());
     }
-  } catch (error) {
-    showErrorDialog(context, error.toString());
   }
-}
 
   bool validate() {
     return nameController.text.isNotEmpty &&
@@ -101,7 +114,9 @@ class StuffFormState extends State<StuffForm> {
             const SizedBox(height: 20),
             Column(
               children: [
-                if (image == null)
+                if (isLoading) // Show CircularProgressIndicator when loading
+                  const CircularProgressIndicator()
+                else if (image == null)
                   const Text('No image selected.')
                 else
                   Text(image!),
@@ -110,7 +125,6 @@ class StuffFormState extends State<StuffForm> {
                   onPressed: pickImage,
                   child: const Text('Pick Image'),
                 ),
-
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () async {
@@ -123,7 +137,15 @@ class StuffFormState extends State<StuffForm> {
                         bioController.text
                       );
                       await stuffService.addMemberOfStuff(stuff);
-                      Navigator.of(context).pop();
+                      Navigator.pushReplacement(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, animation1, animation2) =>
+                                const StuffScreen(),
+                            transitionDuration: Duration.zero,
+                            reverseTransitionDuration: Duration.zero,
+                          ),
+                        );
                     } else {
                       showErrorDialog(context, 'Please fill all fields');
                     }
