@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_movie/components/actor_modal_form.dart';
+import 'package:flutter_movie/components/actor/actor_modal_form.dart';
 import 'package:flutter_movie/components/circular_avatar.dart';
 import 'package:flutter_movie/models/actors.dart';
 import 'package:flutter_movie/services/file_service.dart';
