@@ -21,7 +21,7 @@ class CinemaService {
 
 
   Future<void> updatePlace(Place place, String cinemaId) async {
-    var url = Uri.parse('$baseUrl/cinema/updatePlace');
+    Uri.parse('$baseUrl/cinema/updatePlace');
     var response = await http.post(
             Uri.parse('$baseUrl/cinema/updatePlace'),
             body: jsonEncode({'id': cinemaId, 'place': place.toJson()}),

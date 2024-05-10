@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/screens/cinema_screen.dart';
 
 class CinemaMainInfo extends StatelessWidget {
   static const String year = '2010';
@@ -74,7 +75,9 @@ class CinemaMainInfo extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const CinemaScreen()));
+          },
           style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
           child: const Text(
             'Buy tickets',

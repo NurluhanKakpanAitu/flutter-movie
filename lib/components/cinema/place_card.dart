@@ -3,6 +3,7 @@ import 'package:flutter_movie/components/cinema/order_dialog.dart';
 import 'package:flutter_movie/models/cinema/place.dart';
 import 'package:flutter_movie/utils/helpers.dart';
 
+// ignore: must_be_immutable
 class PlaceCard extends StatefulWidget {
   Place place;
   String cinemaId;

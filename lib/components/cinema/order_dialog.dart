@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/models/cinema/place.dart';
 import 'package:flutter_movie/models/event/event.dart';
-import 'package:flutter_movie/models/user.dart';
 import 'package:flutter_movie/models/user_account.dart';
 import 'package:flutter_movie/services/account_service.dart';
 import 'package:flutter_movie/services/cinema_service.dart';
@@ -70,16 +69,15 @@ class OrderDialogState extends State<OrderDialog> {
       context: context,
       initialTime: TimeOfDay.now(),
     );
-    if (pickedTime!.hour < 10 || pickedTime!.hour > 22) {
+    if (pickedTime!.hour < 10 || pickedTime.hour > 22) {
+      // ignore: use_build_context_synchronously
       Helper.showErrorDialog(context, 'Время должно быть между 10:00 и 22:00');
       return;
     }
-    if (pickedTime != null) {
-      setState(() {
-        _selectedTime = pickedTime;
-      });
+    setState(() {
+      _selectedTime = pickedTime;
+    });
     }
-  }
 
   void _orderPlace() async {
     if (_formKey.currentState!.validate() && _selectedDate != null && _selectedTime != null) {
@@ -168,11 +166,11 @@ class OrderDialogState extends State<OrderDialog> {
       actions: [
         TextButton(
           onPressed: _cancelOrder,
-          child: Text('Отмена'),
+          child: const Text('Отмена'),
         ),
         ElevatedButton(
           onPressed:  _orderPlace,
-          child: Text('Купить'),
+          child: const Text('Купить'),
         ),
       ],
     );

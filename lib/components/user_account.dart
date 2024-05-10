@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/components/event_card.dart';
 import 'package:flutter_movie/main.dart';
+import 'package:flutter_movie/models/event/event.dart';
 import 'package:flutter_movie/models/user_account.dart';
 import 'package:flutter_movie/services/account_service.dart';
 import 'package:flutter_movie/services/event_service.dart';
@@ -19,11 +20,19 @@ class _UserAccountHomeState extends State<UserAccountHome> {
   final AccountService accountService = AccountService();
   final EventService eventService = EventService();
   bool _showPassword = false;
+  String? userId;
+  Future<List<Event>>? userEventsFuture; // Future to hold user events
 
   @override
   void initState() {
     super.initState();
     userAccountFuture = accountService.getAccount();
+    userAccountFuture.then((userAccount) {
+      setState(() {
+        userId = userAccount.id;
+        userEventsFuture = eventService.getEvents(userId!);
+      });
+    });
   }
 
   @override
@@ -90,7 +99,25 @@ class _UserAccountHomeState extends State<UserAccountHome> {
                             },
                           ),
                         ],
-                      )
+                      ),
+                      const SizedBox(height: 20),
+                      FutureBuilder<List<Event>>(
+                        future: userEventsFuture,
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState == ConnectionState.waiting) {
+                            return const Center(child: CircularProgressIndicator());
+                          } else if (snapshot.hasError) {
+                            return Center(child: Text('Error: ${snapshot.error}'));
+                          } else if (snapshot.hasData) {
+                            List<Event> events = snapshot.data!;
+                            return Column(
+                              children: events.map((event) => EventCard(event: event)).toList(),
+                            );
+                          } else {
+                            return const Center(child: Text('No events found.'));
+                          }
+                        },
+                      ),
                     ],
                   ),
                 );
