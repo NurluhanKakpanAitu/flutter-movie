@@ -55,21 +55,16 @@ class NavBar extends StatelessWidget {
             leading: const Icon(Icons.movie),
             title: const Text('Stuff members'),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const StuffScreen()));
-
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const StuffScreen()));
             },
           ),
           ListTile(
             leading: const Icon(Icons.movie),
             title: const Text('Actors'),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ActorScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const ActorScreen()));
             },
           ),
           ListTile(
@@ -77,14 +72,17 @@ class NavBar extends StatelessWidget {
             title: const Text('News'),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const News()));
+                  MaterialPageRoute(builder: (context) => const NewsScreen()));
             },
           ),
           ListTile(
             leading: const Icon(Icons.location_on),
             title: const Text('Find Cinemas'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const CinemaScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const CinemaScreen()));
             },
           ),
           ListTile(
@@ -93,7 +91,10 @@ class NavBar extends StatelessWidget {
             ),
             title: const Text('Profile'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen()));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ProfileScreen()));
             },
           )
         ],
