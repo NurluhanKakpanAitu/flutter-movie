@@ -3,9 +3,12 @@ import 'package:flutter_movie/components/app_bar.dart';
 import 'package:flutter_movie/components/cinema/cinema_feedback.dart';
 import 'package:flutter_movie/components/cinema/cinema_hours.dart';
 import 'package:flutter_movie/components/circular_avatar.dart';
+import 'package:flutter_movie/components/feedback_add_form.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 import 'package:flutter_movie/models/cinema/cinema.dart';
+import 'package:flutter_movie/models/user_account.dart';
 import 'package:flutter_movie/screens/event_screen.dart';
+import 'package:flutter_movie/services/account_service.dart';
 import 'package:flutter_movie/services/file_service.dart';
 
 class CinemaDetailScreen extends StatelessWidget {
@@ -33,11 +36,18 @@ class CinemaDetailScreenHome extends StatefulWidget {
 class CinemaDetailScreenHomeState extends State<CinemaDetailScreenHome> {
   late Future<String> image;
   FileService fileService = FileService();
+  AccountService accountService = AccountService();
+  late UserAccount userAccount;
 
   @override
   void initState() {
     super.initState();
     image = fileService.read(widget.cinema.image);
+    accountService.getAccount().then((value) {
+      setState(() {
+        userAccount = value;
+      });
+    });
   }
 
   @override
@@ -133,10 +143,30 @@ class CinemaDetailScreenHomeState extends State<CinemaDetailScreenHome> {
                   const SizedBox(height: 20),
                   Column(
                     children: widget.cinema.feedbacks
-                        .map((feedback) => FeedBackCard(feedback: feedback))
+                        .map(
+                          (feedback) => FeedBackCard(
+                            feedback: feedback,
+                            cinemaId: widget.cinema.id,
+                          ),
+                        )
                         .toList(),
                   ),
                 ],
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => FeedbackDialog(
+                    cinema: widget.cinema,
+                    email: userAccount.email!,
+                  ),
+                );
+              },
+              child: const Text(
+                'Add feedback',
+                style: TextStyle(color: Colors.blue, fontSize: 16),
               ),
             ),
           ],

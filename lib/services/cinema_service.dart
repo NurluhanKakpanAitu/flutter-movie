@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:flutter_movie/models/cinema/cinema.dart';
+import 'package:flutter_movie/models/cinema/feedback.dart';
 import 'package:flutter_movie/models/cinema/place.dart';
 import 'package:flutter_movie/models/response.dart';
 import 'package:http/http.dart' as http;
@@ -27,6 +29,32 @@ class CinemaService {
             body: jsonEncode({'id': cinemaId, 'place': place.toJson()}),
             headers: {'Content-Type': 'application/json'},
         );
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if (data.status != 200) {
+      throw Exception(data.message);
+    }
+  }
+
+  Future<void> addFeedBack(FeedBack feedBack,String cinemaId) async{
+    var response = await http.post(
+        Uri.parse('$baseUrl/cinema/addFeedBack'),
+        body: jsonEncode({'id': cinemaId, 'email': feedBack.email, 'countOfStar': feedBack.countOfStar, 'text': feedBack.text}),
+        headers: {'Content-Type': 'application/json'},
+    );
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if (data.status != 200) {
+      throw Exception(data.message);
+    }
+  }
+
+  Future<void> deleteFeedBack(String cinemaId, FeedBack feedBack) async{
+    var response = await http.post(
+        Uri.parse('$baseUrl/cinema/removeFeedBack'),
+        body: jsonEncode({'id': cinemaId, 'email': feedBack.email, 'countOfStar': feedBack.countOfStar, 'text': feedBack.text}),
+        headers: {'Content-Type': 'application/json'},
+    );
     var responseBody = jsonDecode(response.body);
     var data = Response.fromJson(responseBody);
     if (data.status != 200) {
