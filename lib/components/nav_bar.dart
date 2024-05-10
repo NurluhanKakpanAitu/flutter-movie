@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/main.dart';
+import 'package:flutter_movie/screens/cinema_screen.dart';
 import 'package:flutter_movie/screens/stuff_screen.dart';
 import 'package:flutter_movie/screens/news.dart';
 import 'package:flutter_movie/screens/actor_screen.dart';
@@ -79,13 +80,13 @@ class NavBar extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const News()));
             },
           ),
-          // ListTile(
-          //   leading: const Icon(Icons.location_on),
-          //   title: const Text('Find Cinemas'),
-          //   onTap: () {
-          //     Navigator.push(context, MaterialPageRoute(builder: (context) => const CinemaScreen()));
-          //   },
-          // ),
+          ListTile(
+            leading: const Icon(Icons.location_on),
+            title: const Text('Find Cinemas'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const CinemaScreen()));
+            },
+          ),
           ListTile(
             leading: const Icon(
               Icons.person,

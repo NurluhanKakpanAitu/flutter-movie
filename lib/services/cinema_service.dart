@@ -1,0 +1,36 @@
+import 'dart:convert';
+import 'package:flutter_movie/models/cinema/cinema.dart';
+import 'package:flutter_movie/models/cinema/place.dart';
+import 'package:flutter_movie/models/response.dart';
+import 'package:http/http.dart' as http;
+
+class CinemaService {
+  static const baseUrl = "http://10.0.2.2:3000";
+
+  Future<List<Cinema>> getCinemas() async {
+    final response = await http.get(Uri.parse('$baseUrl/cinema/all'));
+    final responseBody = jsonDecode(response.body);
+    final data = Response.fromJson(responseBody);
+    if (data.status == 200) {
+      List<Cinema> actors =
+          (data.data as List).map((cinema) => Cinema.fromJson(cinema)).toList();
+      return actors;
+    }
+    throw Exception(data.message);
+  }
+
+
+  Future<void> updatePlace(Place place, String cinemaId) async {
+    var url = Uri.parse('$baseUrl/cinema/updatePlace');
+    var response = await http.post(
+            Uri.parse('$baseUrl/cinema/updatePlace'),
+            body: jsonEncode({'id': cinemaId, 'place': place.toJson()}),
+            headers: {'Content-Type': 'application/json'},
+        );
+    var responseBody = jsonDecode(response.body);
+    var data = Response.fromJson(responseBody);
+    if (data.status != 200) {
+      throw Exception(data.message);
+    }
+  }
+}

@@ -1,205 +1,147 @@
-// import 'package:flutter/material.dart';
-// import 'package:flutter_movie/components/carousel.dart';
-// import 'package:flutter_movie/components/data_selection.dart';
-// import 'package:flutter_movie/models/ICinema.dart';
-// import 'package:flutter_movie/screens/cinema_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_movie/components/app_bar.dart';
+import 'package:flutter_movie/components/cinema/cinema_feedback.dart';
+import 'package:flutter_movie/components/cinema/cinema_hours.dart';
+import 'package:flutter_movie/components/circular_avatar.dart';
+import 'package:flutter_movie/components/nav_bar.dart';
+import 'package:flutter_movie/models/cinema/cinema.dart';
+import 'package:flutter_movie/screens/event_screen.dart';
+import 'package:flutter_movie/services/file_service.dart';
 
-// class CinemaDetails extends StatelessWidget {
-//   final ICinema cinema;
+class CinemaDetailScreen extends StatelessWidget {
+  const CinemaDetailScreen({super.key, required this.cinema});
+  final Cinema cinema;
 
-//   const CinemaDetails({super.key, required this.cinema});
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: CinemaDetailsHome(cinema: cinema),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: CinemaDetailScreenHome(cinema: cinema),
+    );
+  }
+}
 
-// class CinemaDetailsHome extends StatefulWidget {
-//   final ICinema cinema;
+class CinemaDetailScreenHome extends StatefulWidget {
+  const CinemaDetailScreenHome({super.key, required this.cinema});
+  final Cinema cinema;
 
-//   const CinemaDetailsHome({super.key, required this.cinema});
-//   @override
-//   // ignore: library_private_types_in_public_api
-//   _CinemaDetailsHomeState createState() =>
-//       // ignore: no_logic_in_create_state
-//       _CinemaDetailsHomeState(cinema: cinema);
-// }
+  @override
+  State<StatefulWidget> createState() {
+    return CinemaDetailScreenHomeState();
+  }
+}
 
-// class _CinemaDetailsHomeState extends State<CinemaDetailsHome> {
-//   final ICinema cinema;
+class CinemaDetailScreenHomeState extends State<CinemaDetailScreenHome> {
+  late Future<String> image;
+  FileService fileService = FileService();
 
-//   _CinemaDetailsHomeState({required this.cinema});
+  @override
+  void initState() {
+    super.initState();
+    image = fileService.read(widget.cinema.image);
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text(cinema.name),
-//         leading: IconButton(
-//           icon: const Icon(Icons.arrow_back),
-//           onPressed: () {
-//             Navigator.push(
-//                 context,
-//                 MaterialPageRoute(
-//                     builder: (context) => const CinemaScreenHome()));
-//           },
-//         ),
-//       ),
-//       body: SingleChildScrollView(
-//         padding: const EdgeInsets.only(top: 20),
-//         child: Column(
-//           children: [
-//             ImageCarousel(items: cinema.images),
-//             Container(
-//               margin: const EdgeInsets.only(top: 20, left: 50),
-//               child: Center(
-//                 child: Row(
-//                   children: [
-//                     const Icon(
-//                       Icons.location_on,
-//                       color: Colors.black,
-//                       size: 20,
-//                     ),
-//                     const SizedBox(width: 10), //SizedBox
-//                     Text(
-//                       cinema.address,
-//                       style: const TextStyle(
-//                         color: Colors.black,
-//                         fontSize: 20,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//             Container(
-//               margin: const EdgeInsets.only(top: 20, left: 50),
-//               child: Center(
-//                 child: Row(
-//                   children: [
-//                     const Icon(
-//                       Icons.phone,
-//                       color: Colors.black,
-//                       size: 20,
-//                     ),
-//                     const SizedBox(width: 10), //SizedBox
-//                     Text(
-//                       cinema.phone,
-//                       style: const TextStyle(
-//                         color: Colors.black,
-//                         fontSize: 20,
-//                       ),
-//                     ),
-//                   ],
-//                 ),
-//               ),
-//             ),
-//             const SizedBox(height: 20),
-//             const DateSelection(),
-//             Container(
-//               margin: const EdgeInsets.only(top: 20, left: 50),
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   const Text(
-//                     'Режим работы:',
-//                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//                   ),
-//                   ListView.builder(
-//                     shrinkWrap: true,
-//                     itemCount: cinema.operatingModes.length,
-//                     itemBuilder: (context, index) {
-//                       return Padding(
-//                         padding: const EdgeInsets.symmetric(vertical: 4.0),
-//                         child: ExpansionTile(
-//                           title: Text(
-//                             '${cinema.operatingModes[index].name}: ${cinema.operatingModes[index].start} - ${cinema.operatingModes[index].end}',
-//                             style: const TextStyle(fontSize: 18),
-//                           ),
-//                           children: const [
-//                             Padding(
-//                               padding: EdgeInsets.symmetric(horizontal: 16.0),
-//                               child: Text(
-//                                 'Дополнительная информация о режиме работы, если необходимо',
-//                                 style: TextStyle(fontSize: 16),
-//                               ),
-//                             ),
-//                           ],
-//                         ),
-//                       );
-//                     },
-//                   ),
-//                 ],
-//               ),
-//             ),
-//             Container(
-//               margin: const EdgeInsets.only(top: 20),
-//               child: Column(
-//                 crossAxisAlignment: CrossAxisAlignment.start,
-//                 children: [
-//                   const Text(
-//                     'Отзывы:',
-//                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-//                   ),
-//                   ListView.builder(
-//                     shrinkWrap: true,
-//                     itemCount: cinema.feedbacks.length,
-//                     itemBuilder: (context, index) {
-//                       return Card(
-//                         margin: const EdgeInsets.symmetric(vertical: 8.0),
-//                         child: Padding(
-//                           padding: const EdgeInsets.all(8.0),
-//                           child: Column(
-//                             crossAxisAlignment: CrossAxisAlignment.start,
-//                             children: [
-//                               Row(
-//                                 mainAxisAlignment:
-//                                     MainAxisAlignment.spaceBetween,
-//                                 children: [
-//                                   Text(
-//                                     cinema.feedbacks[index].name,
-//                                     style: const TextStyle(
-//                                         fontSize: 16,
-//                                         fontWeight: FontWeight.bold),
-//                                   ),
-//                                   Row(
-//                                     children: [
-//                                       for (int i = 0;
-//                                           i <
-//                                               cinema.feedbacks[index]
-//                                                   .countOfStars;
-//                                           i++)
-//                                         const Icon(Icons.star,
-//                                             color: Colors.orange, size: 16),
-//                                     ],
-//                                   ),
-//                                 ],
-//                               ),
-//                               const SizedBox(height: 8),
-//                               Text(
-//                                 cinema.feedbacks[index].text,
-//                                 style: const TextStyle(fontSize: 14),
-//                               ),
-//                               const SizedBox(height: 4),
-//                               Text(
-//                                 cinema.feedbacks[index].date,
-//                                 style: const TextStyle(
-//                                     fontSize: 12, color: Colors.grey),
-//                               ),
-//                             ],
-//                           ),
-//                         ),
-//                       );
-//                     },
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      drawer: const NavBar(),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            const OwnAppBar(),
+            const SizedBox(height: 20),
+            OwnCircularAvatar(image: image),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    width: 200,
+                    child: Text(
+                      widget.cinema.name,
+                      softWrap: true,
+                      style: const TextStyle(fontSize: 16),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Container(
+                    margin: const EdgeInsets.only(top: 10),
+                    child: Row(
+                      children: [
+                        const SizedBox(
+                          width: 70,
+                        ),
+                        const Icon(Icons.location_on),
+                        const SizedBox(width: 20),
+                        SizedBox(
+                          width: 300,
+                          child: Text(
+                            widget.cinema.address,
+                            softWrap: true,
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Row(
+                    children: [
+                      const SizedBox(
+                        width: 70,
+                      ),
+                      const Icon(Icons.phone),
+                      const SizedBox(width: 20),
+                      Text(
+                        widget.cinema.phone,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          color: Colors.blue,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 20),
+                  CinemaHours(),
+                  const SizedBox(height: 20),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              EventScreen(cinema: widget.cinema),
+                        ),
+                      );
+                    },
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 20,
+                      ),
+                    ),
+                    child: const Text(
+                      'Buy ticket',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Column(
+                    children: widget.cinema.feedbacks
+                        .map((feedback) => FeedBackCard(feedback: feedback))
+                        .toList(),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

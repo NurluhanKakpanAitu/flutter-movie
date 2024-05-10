@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_movie/components/event_card.dart';
 import 'package:flutter_movie/main.dart';
 import 'package:flutter_movie/models/user_account.dart';
 import 'package:flutter_movie/services/account_service.dart';
+import 'package:flutter_movie/services/event_service.dart';
 
 class UserAccountHome extends StatefulWidget {
   const UserAccountHome({super.key});
@@ -15,6 +17,7 @@ class UserAccountHome extends StatefulWidget {
 class _UserAccountHomeState extends State<UserAccountHome> {
   late Future<UserAccount> userAccountFuture;
   final AccountService accountService = AccountService();
+  final EventService eventService = EventService();
   bool _showPassword = false;
 
   @override

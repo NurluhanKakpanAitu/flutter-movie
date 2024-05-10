@@ -30,6 +30,7 @@ class ProfileScreenHome extends StatefulWidget {
 class ProfileScreenHomeState extends State<ProfileScreenHome> {
   bool showLoginForm = true;
   TokenStorage tokenStorage = TokenStorage();
+  
 
   void toggleForm() {
     setState(() {
@@ -58,7 +59,8 @@ class ProfileScreenHomeState extends State<ProfileScreenHome> {
                         : RegisterForm(onLogin: toggleForm));
               }
             },
-          )
+          ),
+
         ],
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_movie/components/actor/actor_card.dart';
 import 'package:flutter_movie/components/app_bar.dart';
-import 'package:flutter_movie/components/cinema_main_info.dart';
-import 'package:flutter_movie/components/cinema_overview.dart';
+import 'package:flutter_movie/components/cinema/cinema_main_info.dart';
+import 'package:flutter_movie/components/cinema/cinema_overview.dart';
 import 'package:flutter_movie/components/nav_bar.dart';
 import 'package:flutter_movie/components/video_player.dart';
 import 'package:flutter_movie/models/actors.dart';

@@ -163,13 +163,7 @@ class UpdateActorDialogState extends State<UpdateActorDialog> {
                 },
               ),
               const SizedBox(height: 10),
-              TextFormField(
-                controller: dateOfBirthController,
-                decoration: const InputDecoration(
-                  labelText: 'Date of Birth',
-                  border: OutlineInputBorder(),
-                ),
-              ),
+              
               const SizedBox(height: 10),
               TextFormField(
                 controller: moviesController,
@@ -245,6 +239,7 @@ class UpdateActorDialogState extends State<UpdateActorDialog> {
                 image: image!,
               );
               await actorService.updateActor(updatedActor);
+              // ignore: use_build_context_synchronously
               Navigator.push(context, MaterialPageRoute(builder: (context) => const ActorScreen()));
             } else {
               Helper.showErrorDialog(context, 'Please fill all fields');
