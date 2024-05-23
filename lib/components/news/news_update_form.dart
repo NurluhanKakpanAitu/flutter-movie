@@ -45,7 +45,7 @@ class UpdateNewsDialogState extends State<UpdateNewsDialog> {
     titleController = TextEditingController(text: widget.news.title);
     contentController = TextEditingController(text: widget.news.content);
     authorController = TextEditingController(text: widget.news.author);
-    dateController = TextEditingController(text: widget.news.date);
+    dateController = TextEditingController(text: widget.news.date.toString());
 
     image = widget.news.image;
   }

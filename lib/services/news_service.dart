@@ -57,7 +57,7 @@ class NewsService {
     }
   }
 
-  Future<void> deleteNews(String id) async {
+  Future<void> deleteNews(int id) async {
     var response = await http.delete(Uri.parse('$baseUrl/news/delete/$id'));
     var responseBody = jsonDecode(response.body);
     var data = Response.fromJson(responseBody);
