@@ -16,7 +16,7 @@ class FileService {
         var data = Response.fromJson(responseBody);
         return data.data;
       } else {
-        throw Exception('Failed to load image');
+        return 'test';
       }
     } catch (e) {
       throw Exception(e.toString());
@@ -54,7 +54,7 @@ class FileService {
       if (data.status == 200) {
         return data.data;
       }
-      throw Exception(data.message);
+      return 'test';
     } catch (error) {
       throw Exception(error);
     }
