@@ -1,7 +1,7 @@
 // (title, content, author, date, image)
 
 class News {
-  late int? id;
+  late String? id;
   late String? title;
   late String? content;
   late String? author;
